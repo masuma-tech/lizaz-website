@@ -1,0 +1,23 @@
+.page {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+}
+
+.page--plain {
+  min-height: calc(100vh - var(--header-h) - 80px);
+  display: flex;
+  align-items: center;
+}
+
+.page__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.page__lead {
+  margin-top: 1rem;
+  max-width: 36ch;
+  color: var(--text-secondary);
+  font-size: 1.0625rem;
+}
