@@ -197,6 +197,33 @@ main {
   color: var(--text-secondary);
 }
 
+.wa-float {
+  position: fixed;
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  right: max(1.25rem, env(safe-area-inset-right));
+  z-index: 160;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.wa-float:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+.wa-float svg {
+  width: 28px;
+  height: 28px;
+}
+
 @media (max-width: 900px) {
   :root {
     --header-h: 64px;
