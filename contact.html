@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us - Lizaz</title>
-  <meta name="description" content="Contact Lizaz">
+  <meta name="description" content="Contact Lizaz for document clearance, visa, immigration, golden visa, and business setup services in the UAE.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
 </head>
@@ -12,7 +12,99 @@
   <a href="#main" class="skip-link">Skip to content</a>
   <div id="site-header"></div>
 
-  <main id="main"></main>
+  <main id="main">
+    <header class="page-hero" aria-labelledby="contact-page-title">
+      <div class="container page-hero__inner">
+        <p class="section-label section-label--light">Contact Us</p>
+        <h1 id="contact-page-title" class="page__title">Get in Touch with Our UAE Specialists</h1>
+        <p class="page__lead page__lead--wide">Book a free consultation, request a quote, or ask about document clearance, visas, golden visa applications, and business setup — we respond within 24 hours.</p>
+      </div>
+    </header>
+
+    <section class="page page-contact-form reveal" aria-labelledby="form-title">
+      <div class="container page-contact-form__grid">
+        <div class="page-contact-form__intro">
+          <p class="section-label">Send a Message</p>
+          <h2 id="form-title" class="section-title">Tell Us About Your Requirements</h2>
+          <p class="section-text">Fill in the form and our team will contact you with a clear timeline, document checklist, and quote for your service.</p>
+          <ul class="about-checklist">
+            <li>Free consultation for all new enquiries</li>
+            <li>Transparent pricing with no hidden fees</li>
+            <li>Dedicated specialist assigned to your file</li>
+          </ul>
+        </div>
+        <div class="page-contact-form__wrap">
+          <form class="page-contact-form__form" action="/contact" method="get">
+            <div class="page-contact-form__fields">
+              <label class="page-contact-form__field">
+                <span>First Name</span>
+                <input type="text" name="firstName" placeholder="Enter your first name" required>
+              </label>
+              <label class="page-contact-form__field">
+                <span>Last Name</span>
+                <input type="text" name="lastName" placeholder="Enter your last name" required>
+              </label>
+              <label class="page-contact-form__field">
+                <span>Email Address</span>
+                <input type="email" name="email" placeholder="Enter your email address" required>
+              </label>
+              <label class="page-contact-form__field">
+                <span>Phone No.</span>
+                <input type="tel" name="phone" placeholder="Enter your phone number">
+              </label>
+              <label class="page-contact-form__field">
+                <span>Services</span>
+                <select name="service" required>
+                  <option value="" selected disabled>Select a service</option>
+                  <option>Document Clearance</option>
+                  <option>Visa Services</option>
+                  <option>Immigration</option>
+                  <option>Golden Visa</option>
+                  <option>Business Setup</option>
+                  <option>Certificate Attestation</option>
+                </select>
+              </label>
+              <label class="page-contact-form__field">
+                <span>Subject</span>
+                <input type="text" name="subject" placeholder="Enter subject">
+              </label>
+            </div>
+            <label class="page-contact-form__field page-contact-form__field--full">
+              <span>Message</span>
+              <textarea name="message" rows="5" placeholder="Describe your requirements" required></textarea>
+            </label>
+            <button type="submit" class="btn btn--primary">Submit Now</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="page about-commitment reveal" aria-labelledby="contact-help-title">
+      <div class="container about-commitment__grid">
+        <div class="about-commitment__content">
+          <p class="section-label">How We Help</p>
+          <h2 id="contact-help-title" class="section-title">What Happens After You Contact Us</h2>
+          <p class="section-text">Within one business day, a Lizaz specialist will review your enquiry and reach out to discuss your requirements, explain the process, and provide a clear quote.</p>
+          <p class="section-text">Whether you need a single certificate attested or full support with a golden visa or business setup, we assign one dedicated contact who tracks your file until completion.</p>
+          <a href="/services" class="btn btn--primary">Explore Our Services</a>
+        </div>
+        <div class="about-commitment__media">
+          <img src="attached_assets/images/doc2.jpg" alt="Contact Lizaz document clearance team" width="600" height="500" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="about-cta reveal" aria-labelledby="contact-cta-title">
+      <div class="container about-cta__inner">
+        <h2 id="contact-cta-title" class="about-cta__title">Prefer to Talk Directly?</h2>
+        <p class="about-cta__text">Call us during business hours or email anytime — our team is ready to help with document clearance, visas, and business setup across the UAE.</p>
+        <div class="about-cta__actions">
+          <a href="tel:+1234567890" class="btn btn--primary">Call Now</a>
+          <a href="mailto:support@lizaz.com" class="btn btn--outline-light">Send Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <div id="site-footer"></div>
   <script src="js/site.js"></script>

@@ -3,15 +3,13 @@
 
   const NAV_ITEMS = [
     { href: '/', label: 'Home', id: 'home' },
-    { href: '/#about', label: 'About', id: 'about' },
-    { href: '/#services', label: 'Services', id: 'services' },
-    { href: '/#why-us', label: 'Why Us', id: 'why-us' },
-    { href: '/#testimonials', label: 'Testimonials', id: 'testimonials' },
-    { href: '/#faq', label: 'FAQ', id: 'faq' },
+    { href: '/about', label: 'About', id: 'about' },
+    { href: '/services', label: 'Services', id: 'services' },
     { href: '/blog', label: 'Blog', id: 'blog' },
+    { href: '/contact', label: 'Contact', id: 'contact' },
   ];
 
-  const CONTACT_HREF = '/#contact';
+  const CONTACT_HREF = '/contact';
 
   function getCurrentPage() {
     return document.body.dataset.page || '';
@@ -44,7 +42,7 @@
       </a>
       <nav class="nav" aria-label="Main navigation">${navLinks}</nav>
       <div class="header__actions">
-        <a href="${CONTACT_HREF}" class="nav__cta${ctaActive}">Register Now</a>
+        <a href="${CONTACT_HREF}" class="nav__cta${ctaActive}">Get Started</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -52,7 +50,7 @@
     </div>
     <nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile navigation">
       ${navLinks}
-      <a href="${CONTACT_HREF}" class="nav__cta nav__cta--mobile${ctaActive}">Register Now</a>
+      <a href="${CONTACT_HREF}" class="nav__cta nav__cta--mobile${ctaActive}">Get Started</a>
     </nav>
   </header>`;
   }
@@ -64,7 +62,7 @@
         <a href="/" class="logo" aria-label="Lizaz Home">
           <span class="logo__text">Lizaz</span>
         </a>
-        <p class="footer__desc">Trusted notary and legal services for document authentication, real estate closings, and more.</p>
+        <p class="footer__desc">Trusted document clearance, visa, immigration, golden visa, and business setup services across the UAE.</p>
       </div>
       <div>
         <h3 class="footer__heading">Quick Links</h3>
@@ -76,12 +74,14 @@
         </ul>
       </div>
       <div>
-        <h3 class="footer__heading">Practice Area</h3>
+        <h3 class="footer__heading">Our Services</h3>
         <ul class="footer__links">
-          <li><a href="/#services">Document Authentication</a></li>
-          <li><a href="/#services">Witnessing Signatures</a></li>
-          <li><a href="/#services">Real Estate Closings</a></li>
-          <li><a href="/#services">Certifying Copies</a></li>
+          <li><a href="/services">Document Clearance</a></li>
+          <li><a href="/services">Visa Services</a></li>
+          <li><a href="/services">Immigration</a></li>
+          <li><a href="/services">Golden Visa</a></li>
+          <li><a href="/services">Business Setup</a></li>
+          <li><a href="/services">Certificate Attestation</a></li>
         </ul>
       </div>
       <div>
