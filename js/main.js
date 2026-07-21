@@ -27,16 +27,21 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('.faq-accordion__trigger').forEach((trigger) => {
   trigger.addEventListener('click', () => {
     const item = trigger.closest('.faq-accordion__item');
+    const panel = item?.querySelector('.faq-accordion__panel');
     const isOpen = item.classList.contains('is-open');
 
     document.querySelectorAll('.faq-accordion__item').forEach((el) => {
       el.classList.remove('is-open');
-      el.querySelector('.faq-accordion__trigger')?.setAttribute('aria-expanded', 'false');
+      const elTrigger = el.querySelector('.faq-accordion__trigger');
+      const elPanel = el.querySelector('.faq-accordion__panel');
+      elTrigger?.setAttribute('aria-expanded', 'false');
+      elPanel?.setAttribute('hidden', '');
     });
 
     if (!isOpen) {
       item.classList.add('is-open');
       trigger.setAttribute('aria-expanded', 'true');
+      panel?.removeAttribute('hidden');
     }
   });
 });
