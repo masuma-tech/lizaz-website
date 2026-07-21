@@ -115,6 +115,7 @@ button {
   right: 0;
   z-index: 200;
   height: var(--header-h);
+  overflow: visible;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -181,6 +182,29 @@ button {
 .logo {
   flex-shrink: 0;
   justify-self: start;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo__img {
+  display: block;
+  height: 64px;
+  width: auto;
+  max-width: 300px;
+  object-fit: contain;
+}
+
+.logo--header .logo__img {
+  height: 58px;
+  max-width: 400px;
+  transform: scale(1.55);
+  transform-origin: left center;
+}
+
+.logo--footer .logo__img {
+  height: 88px;
+  max-width: 380px;
+  transform: none;
 }
 
 .logo__text {
@@ -190,6 +214,15 @@ button {
   letter-spacing: -0.02em;
   color: var(--navy);
   position: relative;
+  display: none;
+}
+
+.logo--text .logo__text {
+  display: inline;
+}
+
+.logo--text .logo__img {
+  display: none;
 }
 
 .logo__text::after {
@@ -650,6 +683,13 @@ main {
   :root {
     --header-h: 72px;
     --topbar-h: 0px;
+  }
+
+  .logo--header .logo__img {
+    height: 44px;
+    max-width: 290px;
+    transform: scale(1.45);
+    transform-origin: left center;
   }
 
   .topbar {

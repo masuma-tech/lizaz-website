@@ -11,6 +11,29 @@
 
   const CONTACT_HREF = '/contact';
 
+  const LOGO = {
+    header: encodeURI('/attached_assets/logo/Lizaz Logo Final-01.png'),
+    footer: encodeURI('/attached_assets/logo/Lizaz Logo Final-03.png'),
+    alt: 'Lizaz',
+  };
+
+  function buildLogo(variant) {
+    const src = variant === 'footer' ? LOGO.footer : LOGO.header;
+
+    return `<a href="/" class="logo logo--${variant}" aria-label="Lizaz Home">
+        <img
+          src="${src}"
+          alt="${LOGO.alt}"
+          class="logo__img"
+          width="300"
+          height="64"
+          decoding="async"
+          onerror="this.closest('.logo').classList.add('logo--text')"
+        >
+        <span class="logo__text">Lizaz</span>
+      </a>`;
+  }
+
   function getCurrentPage() {
     return document.body.dataset.page || '';
   }
@@ -37,12 +60,10 @@
 
     return `${buildTopBar()}<header class="header" id="header">
     <div class="container header__inner">
-      <a href="/" class="logo" aria-label="Lizaz Home">
-        <span class="logo__text">Lizaz</span>
-      </a>
+      ${buildLogo('header')}
       <nav class="nav" aria-label="Main navigation">${navLinks}</nav>
       <div class="header__actions">
-        <a href="${CONTACT_HREF}" class="nav__cta${ctaActive}">Get Started</a>
+        <a href="${CONTACT_HREF}" class="nav__cta${ctaActive}">Get in Touch</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -50,7 +71,7 @@
     </div>
     <nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile navigation">
       ${navLinks}
-      <a href="${CONTACT_HREF}" class="nav__cta nav__cta--mobile${ctaActive}">Get Started</a>
+      <a href="${CONTACT_HREF}" class="nav__cta nav__cta--mobile${ctaActive}">Get in Touch</a>
     </nav>
   </header>`;
   }
@@ -59,9 +80,7 @@
     return `<footer class="footer">
     <div class="container footer__main">
       <div class="footer__brand">
-        <a href="/" class="logo" aria-label="Lizaz Home">
-          <span class="logo__text">Lizaz</span>
-        </a>
+        ${buildLogo('footer')}
         <p class="footer__desc">Trusted document clearance, visa, immigration, golden visa, and business setup services across the UAE.</p>
       </div>
       <div>
