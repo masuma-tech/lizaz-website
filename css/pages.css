@@ -3,16 +3,23 @@
 }
 
 .page--plain {
-  min-height: calc(100vh - var(--header-h) - 80px);
+  min-height: calc(100vh - var(--header-h) - var(--topbar-h) - 80px);
   display: flex;
   align-items: center;
 }
 
+body[data-page="home"] main {
+  min-height: auto;
+  padding-top: 0;
+}
+
 .page__title {
+  font-family: var(--font-heading);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  color: var(--navy);
 }
 
 .page__lead {

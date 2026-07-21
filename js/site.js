@@ -3,11 +3,15 @@
 
   const NAV_ITEMS = [
     { href: '/', label: 'Home', id: 'home' },
-    { href: '/about', label: 'About Us', id: 'about' },
-    { href: '/services', label: 'Our Services', id: 'services' },
+    { href: '/#about', label: 'About', id: 'about' },
+    { href: '/#services', label: 'Services', id: 'services' },
+    { href: '/#why-us', label: 'Why Us', id: 'why-us' },
+    { href: '/#testimonials', label: 'Testimonials', id: 'testimonials' },
+    { href: '/#faq', label: 'FAQ', id: 'faq' },
     { href: '/blog', label: 'Blog', id: 'blog' },
-    { href: '/contact', label: 'Contact Us', id: 'contact' },
   ];
+
+  const CONTACT_HREF = '/#contact';
 
   function getCurrentPage() {
     return document.body.dataset.page || '';
@@ -18,16 +22,29 @@
     return `<a href="${item.href}" class="nav__link${active}">${item.label}</a>`;
   }
 
+  function buildTopBar() {
+    return `<div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__contact">
+        <a href="tel:+1234567890">+1 234 567 890</a>
+        <a href="mailto:support@lizaz.com">support@lizaz.com</a>
+      </div>
+    </div>
+  </div>`;
+  }
+
   function buildHeader(current) {
     const navLinks = NAV_ITEMS.map((item) => navLink(item, current)).join('');
+    const ctaActive = current === 'contact' ? ' nav__cta--active' : '';
 
-    return `<header class="header" id="header">
+    return `${buildTopBar()}<header class="header" id="header">
     <div class="container header__inner">
       <a href="/" class="logo" aria-label="Lizaz Home">
         <span class="logo__text">Lizaz</span>
       </a>
       <nav class="nav" aria-label="Main navigation">${navLinks}</nav>
       <div class="header__actions">
+        <a href="${CONTACT_HREF}" class="nav__cta${ctaActive}">Register Now</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -35,17 +52,50 @@
     </div>
     <nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile navigation">
       ${navLinks}
+      <a href="${CONTACT_HREF}" class="nav__cta nav__cta--mobile${ctaActive}">Register Now</a>
     </nav>
   </header>`;
   }
 
   function buildFooter() {
     return `<footer class="footer">
-    <div class="container footer__inner">
-      <a href="/" class="logo" aria-label="Lizaz Home">
-        <span class="logo__text">Lizaz</span>
-      </a>
-      <p class="footer__copy">&copy; ${new Date().getFullYear()} Lizaz</p>
+    <div class="container footer__main">
+      <div class="footer__brand">
+        <a href="/" class="logo" aria-label="Lizaz Home">
+          <span class="logo__text">Lizaz</span>
+        </a>
+        <p class="footer__desc">Trusted notary and legal services for document authentication, real estate closings, and more.</p>
+      </div>
+      <div>
+        <h3 class="footer__heading">Quick Links</h3>
+        <ul class="footer__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/services">Our Services</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer__heading">Practice Area</h3>
+        <ul class="footer__links">
+          <li><a href="/#services">Document Authentication</a></li>
+          <li><a href="/#services">Witnessing Signatures</a></li>
+          <li><a href="/#services">Real Estate Closings</a></li>
+          <li><a href="/#services">Certifying Copies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer__heading">Contact</h3>
+        <ul class="footer__links">
+          <li><a href="/contact">Get in Touch</a></li>
+          <li><a href="/contact">Book Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__inner">
+        <p class="footer__copy">&copy; ${new Date().getFullYear()} Lizaz. All rights reserved.</p>
+      </div>
     </div>
   </footer>`;
   }

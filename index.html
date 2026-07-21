@@ -4,19 +4,492 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - Lizaz</title>
-  <meta name="description" content="Lizaz">
+  <meta name="description" content="Lizaz — Secure your legacy with expert notary services.">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
 <body data-page="home">
   <a href="#main" class="skip-link">Skip to content</a>
   <div id="site-header"></div>
 
   <main id="main">
-    <section class="page page--plain">
+    <!-- Hero -->
+    <header class="home-hero" aria-labelledby="hero-title">
+      <div class="home-hero__bg" aria-hidden="true"></div>
+      <div class="container home-hero__grid">
+        <div class="home-hero__content">
+          <h1 id="hero-title" class="home-hero__title">Secure Your Legacy with Expert Notary Services</h1>
+          <p class="home-hero__lead">At Lizaz, we understand the importance of your documents. Our trusted notary services ensure that your most crucial papers are properly authenticated and legally binding, giving you peace of mind for all of life's important transactions.</p>
+          <a href="/contact" class="btn btn--primary">Get Consultations</a>
+        </div>
+        <div class="home-hero__media">
+          <div class="home-frame" aria-hidden="true">
+            <svg class="home-frame__shape" viewBox="0 0 500 640" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M96.7255 20.1505C98.6132 8.5339 108.646 0 120.415 0L476 0C489.255 0 500 10.7452 500 24V616C500 629.255 489.255 640 476 640H24.2148C9.42367 640 -1.8469 626.75 0.525545 612.151L96.7255 20.1505Z" fill="currentColor"/></svg>
+            <div class="home-frame__image">
+              <img src="attached_assets/images/business.jpg" alt="Professional notary consultation" width="500" height="640" loading="eager">
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section class="home-section home-about" id="about" aria-labelledby="about-title">
+      <div class="container home-about__grid">
+        <div class="home-about__media">
+          <img src="attached_assets/images/doc3.jpg" alt="Professional legal team" width="600" height="700" loading="lazy">
+        </div>
+        <div class="home-about__content">
+          <p class="section-label">About Us</p>
+          <h2 id="about-title" class="section-title">Notarization with a Personal Touch</h2>
+          <p class="section-text">Founded in 2008, Lizaz has been at the forefront of providing trusted notary services for over 15 years. Our journey began with a simple mission: to make notarization services accessible, efficient, and reliable for everyone.</p>
+
+          <div class="home-info-card">
+            <h3 class="home-info-card__title">Our Team</h3>
+            <p>Led by John Doe, a Certified Notary Public with over two decades of experience, our team consists of highly trained and certified notaries who are passionate about what they do. Each member of our staff undergoes rigorous training.</p>
+          </div>
+
+          <div class="home-info-card">
+            <h3 class="home-info-card__title">Our Commitment</h3>
+            <p>At Lizaz, we understand that behind every document is an important life event or business transaction. That's why we approach each notarization with the utmost care and attention to detail. We're not just authenticating signatures; we're helping you move forward with confidence in life's important moments.</p>
+          </div>
+
+          <a href="/about" class="btn btn--primary">Discover More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="home-section home-services" id="services" aria-labelledby="services-title">
+      <div class="container home-services__grid">
+        <div class="home-services__content">
+          <p class="section-label section-label--light">Services</p>
+          <h2 id="services-title" class="section-title section-title--light">Service We Provide</h2>
+          <p class="section-text section-text--light">At Lizaz, we offer a comprehensive range of notary services to meet your legal needs.</p>
+
+          <ul class="service-list">
+            <li class="service-list__item">
+              <span class="service-list__icon" aria-hidden="true">&#128196;</span>
+              <div>
+                <h3 class="service-list__title">Document Authentication</h3>
+                <p>We verify and certify the authenticity of your important documents.</p>
+              </div>
+            </li>
+            <li class="service-list__item">
+              <span class="service-list__icon" aria-hidden="true">&#128101;</span>
+              <div>
+                <h3 class="service-list__title">Witnessing Signatures</h3>
+                <p>Our notaries serve as impartial witnesses for the signing of legal documents.</p>
+              </div>
+            </li>
+            <li class="service-list__item">
+              <span class="service-list__icon" aria-hidden="true">&#127968;</span>
+              <div>
+                <h3 class="service-list__title">Real Estate Closings</h3>
+                <p>Our notaries assist in the proper execution of real estate transactions.</p>
+              </div>
+            </li>
+            <li class="service-list__item">
+              <span class="service-list__icon" aria-hidden="true">&#128203;</span>
+              <div>
+                <h3 class="service-list__title">Certifying Copies</h3>
+                <p>We authenticate copies of original documents, ensuring their legal validity.</p>
+              </div>
+            </li>
+            <li class="service-list__item">
+              <span class="service-list__icon" aria-hidden="true">&#9878;</span>
+              <div>
+                <h3 class="service-list__title">Administering Oaths</h3>
+                <p>We officiate oaths and affirmations for legal proceedings</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="home-services__media">
+          <img src="attached_assets/images/embassy.jpg" alt="Notary services" width="600" height="700" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="home-section home-process" id="why-us" aria-labelledby="process-title">
       <div class="container">
-        <h1 class="page__title">Lizaz</h1>
-        <p class="page__lead">Welcome.</p>
+        <div class="section-header section-header--center">
+          <p class="section-label">How it works</p>
+          <h2 id="process-title" class="section-title">Your Notarization Journey with Lizaz</h2>
+          <p class="section-lead">At Lizaz, we offer a comprehensive range of notary services to meet your legal needs</p>
+        </div>
+
+        <div class="process-timeline">
+          <div class="process-timeline__col">
+            <article class="process-card">
+              <span class="process-card__num">1</span>
+              <h3 class="process-card__title">Schedule Your Appointment</h3>
+              <ul class="process-card__list">
+                <li>Call us at 123-456-7890 or use our online booking system.</li>
+                <li>Call us at 123-456-7890 or use our online booking system.</li>
+              </ul>
+            </article>
+            <article class="process-card">
+              <span class="process-card__num">2</span>
+              <h3 class="process-card__title">Prepare Your Documents</h3>
+              <ul class="process-card__list">
+                <li>Gather all documents requiring notarization.</li>
+                <li>Ensure documents are complete but unsigned.</li>
+              </ul>
+            </article>
+            <article class="process-card">
+              <span class="process-card__num">3</span>
+              <h3 class="process-card__title">Collect Necessary Identification</h3>
+              <ul class="process-card__list">
+                <li>If required, gather any additional supporting documents.</li>
+                <li>Prepare a valid, government-issued photo ID.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="process-timeline__line" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+
+          <div class="process-timeline__col">
+            <article class="process-card">
+              <span class="process-card__num">4</span>
+              <h3 class="process-card__title">Meet with Our Notary</h3>
+              <ul class="process-card__list">
+                <li>Arrive at our office or welcome our mobile notary at your chosen location.</li>
+                <li>Present your documents and identification.</li>
+              </ul>
+            </article>
+            <article class="process-card">
+              <span class="process-card__num">5</span>
+              <h3 class="process-card__title">Document Review</h3>
+              <ul class="process-card__list">
+                <li>Our notary will carefully review your documents to ensure they meet all legal requirements.</li>
+              </ul>
+            </article>
+            <article class="process-card">
+              <span class="process-card__num">6</span>
+              <h3 class="process-card__title">Receive Your Notarized Documents</h3>
+              <ul class="process-card__list">
+                <li>Once complete, you'll receive your officially notarized documents.</li>
+                <li>We'll provide guidance on any next steps or filing procedures.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="home-section home-faq" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <p class="section-label section-label--light">About Us</p>
+          <h2 id="faq-title" class="section-title section-title--light">Frequently Asked Questions</h2>
+          <p class="section-lead section-lead--light">Here are some common questions people ask us.</p>
+        </div>
+
+        <div class="faq-accordion">
+          <div class="faq-accordion__item is-open">
+            <button class="faq-accordion__trigger" type="button" aria-expanded="true">
+              <span>1. What documents do I need to bring for notarization?</span>
+              <span class="faq-accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-accordion__panel">
+              <p>You need to bring the document you want to get notarized and a valid, government-issued photo ID (like a driver's license or passport).</p>
+            </div>
+          </div>
+          <div class="faq-accordion__item">
+            <button class="faq-accordion__trigger" type="button" aria-expanded="false">
+              <span>2. Do you offer mobile notary services?</span>
+              <span class="faq-accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-accordion__panel">
+              <p>Yes, we do offer mobile notary services. We can come to your location for notarization if needed.</p>
+            </div>
+          </div>
+          <div class="faq-accordion__item">
+            <button class="faq-accordion__trigger" type="button" aria-expanded="false">
+              <span>3. What types of payment do you accept?</span>
+              <span class="faq-accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-accordion__panel">
+              <p>We accept various payment methods, including cash, credit cards, and debit cards.</p>
+            </div>
+          </div>
+          <div class="faq-accordion__item">
+            <button class="faq-accordion__trigger" type="button" aria-expanded="false">
+              <span>4. What are your operating hours?</span>
+              <span class="faq-accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-accordion__panel">
+              <p>Our regular operating hours are Monday through Friday, 9 AM to 5 PM. We are closed on weekends and public holidays.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-cta">
+          <h3 class="faq-cta__title">Still have a concern? Let us know your query.</h3>
+          <a href="/contact" class="btn btn--primary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expertise -->
+    <section class="home-section home-expertise" aria-labelledby="expertise-title">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <p class="section-label">Practice Area</p>
+          <h2 id="expertise-title" class="section-title">Our Areas of Expertise</h2>
+          <p class="section-lead">At Lizaz, we offer comprehensive legal services to meet a wide range of needs. Our experienced team of attorneys specializes in various practice areas, ensuring that you receive expert guidance and representation for your specific legal challenges. Explore our areas of expertise below:</p>
+        </div>
+
+        <div class="expertise-grid">
+          <article class="expertise-row">
+            <img src="attached_assets/images/business.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Family Law</h3>
+              <p>Navigating family matters with compassion and expertise. We're here to protect your interests and those of your loved ones.</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+          <article class="expertise-row">
+            <img src="attached_assets/images/uae.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Real Estate Law</h3>
+              <p>From property transactions to dispute resolution, we ensure your real estate dealings are legally sound and beneficial</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+          <article class="expertise-row">
+            <img src="attached_assets/images/doc3.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Business Law</h3>
+              <p>Empowering your business with solid legal foundations. We help you navigate the complexities of corporate law.</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+          <article class="expertise-row">
+            <img src="attached_assets/images/doc4.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Personal Injury</h3>
+              <p>Advocating for your rights and fair compensation. Let us handle the legal burden while you focus on recovery.</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+          <article class="expertise-row">
+            <img src="attached_assets/images/golden_visa.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Estate Planning</h3>
+              <p>Secure your legacy and protect your loved ones. We help you plan for the future with confidence.</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+          <article class="expertise-row">
+            <img src="attached_assets/images/embassy.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Criminal Defense</h3>
+              <p>Robust defense strategies tailored to your case. We stand by you throughout the legal process</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+          <article class="expertise-row">
+            <img src="attached_assets/images/tax.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Employment Law</h3>
+              <p>Protecting your rights in the workplace. Whether you're an employee or employer, we ensure fair treatment</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+          <article class="expertise-row">
+            <img src="attached_assets/images/visa.jpg" alt="" width="200" height="160" loading="lazy">
+            <div>
+              <h3 class="expertise-row__title">Immigration Law</h3>
+              <p>Guiding you through the complexities of immigration. We help make your American dream a reality.</p>
+              <a href="/services" class="expertise-row__link">More Details</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Judge Quote -->
+    <section class="home-section home-quote" aria-labelledby="quote-title">
+      <div class="container home-quote__grid">
+        <div class="home-quote__media">
+          <div class="home-frame home-frame--flip" aria-hidden="true">
+            <svg class="home-frame__shape" viewBox="0 0 500 640" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M96.7255 20.1505C98.6132 8.5339 108.646 0 120.415 0L476 0C489.255 0 500 10.7452 500 24V616C500 629.255 489.255 640 476 640H24.2148C9.42367 640 -1.8469 626.75 0.525545 612.151L96.7255 20.1505Z" fill="currentColor"/></svg>
+            <div class="home-frame__image">
+              <img src="attached_assets/images/doc1.jpg" alt="Legal expert" width="500" height="640" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="home-quote__content">
+          <h2 id="quote-title" class="home-quote__name">Judge Eleanor Simmons</h2>
+          <p class="home-quote__role">Former Chief Justice, Court Expert in Constitutional Law and Legal Ethics</p>
+          <blockquote class="home-quote__text">
+            <p>In my 30 years of legal practice, I've encountered numerous notary services. Lizaz stands out for their unwavering commitment to accuracy, efficiency, and client care. Their expertise in handling complex legal documents is truly commendable. For anyone seeking reliable notary services, Lizaz is the gold standard.</p>
+          </blockquote>
+          <a href="/contact" class="btn btn--primary">Book Appointment</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="home-section home-testimonials" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <p class="section-label">Testimonial</p>
+          <h2 id="testimonials-title" class="section-title">What Our Clients Say</h2>
+          <p class="section-lead">At Lizaz, our clients' satisfaction is our top priority. We're proud to have served individuals and businesses across various legal needs, providing reliable, efficient, and professional notary services. But don't just take our word for it - here's what some of our valued clients have to say about their experiences with us:</p>
+        </div>
+
+        <div class="testimonial-split">
+          <div class="testimonial-split__content">
+            <p class="testimonial-split__label"><span aria-hidden="true"></span> Testimonial</p>
+            <div class="testimonial-slider" data-testimonial-slider>
+              <div class="testimonial-slider__track">
+                <article class="testimonial-slide is-active">
+                  <p>At Lizaz, our clients' satisfaction is our top priority. We're proud to have served individuals and businesses across various legal needs, providing reliable, efficient, and professional notary services. But don't just take our word for it - here's what some of our valued clients have to say about their experiences with us:</p>
+                  <div class="testimonial-slide__author">
+                    <img src="attached_assets/images/doc4.jpg" alt="" width="56" height="56" loading="lazy">
+                    <div>
+                      <strong>Sarah T.</strong>
+                      <span>Small Business Owner</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <p>At Lizaz, our clients' satisfaction is our top priority. We're proud to have served individuals and businesses across various legal needs, providing reliable, efficient, and professional notary services. But don't just take our word for it - here's what some of our valued clients have to say about their experiences with us:</p>
+                  <div class="testimonial-slide__author">
+                    <img src="attached_assets/images/doc4.jpg" alt="" width="56" height="56" loading="lazy">
+                    <div>
+                      <strong>Sarah T.</strong>
+                      <span>Small Business Owner</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="testimonial-slider__nav">
+                <button type="button" class="testimonial-slider__btn" data-testimonial-prev aria-label="Previous testimonial">&larr;</button>
+                <button type="button" class="testimonial-slider__btn" data-testimonial-next aria-label="Next testimonial">&rarr;</button>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-split__media">
+            <div class="home-frame" aria-hidden="true">
+              <svg class="home-frame__shape" viewBox="0 0 500 640" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M96.7255 20.1505C98.6132 8.5339 108.646 0 120.415 0L476 0C489.255 0 500 10.7452 500 24V616C500 629.255 489.255 640 476 640H24.2148C9.42367 640 -1.8469 626.75 0.525545 612.151L96.7255 20.1505Z" fill="currentColor"/></svg>
+              <div class="home-frame__image">
+                <img src="attached_assets/images/uae.jpg" alt="Client testimonial" width="500" height="640" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="home-section home-contact" id="contact" aria-labelledby="contact-title">
+      <div class="container home-contact__grid">
+        <div class="home-contact__media">
+          <div class="home-frame home-frame--flip" aria-hidden="true">
+            <svg class="home-frame__shape" viewBox="0 0 500 640" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M96.7255 20.1505C98.6132 8.5339 108.646 0 120.415 0L476 0C489.255 0 500 10.7452 500 24V616C500 629.255 489.255 640 476 640H24.2148C9.42367 640 -1.8469 626.75 0.525545 612.151L96.7255 20.1505Z" fill="currentColor"/></svg>
+            <div class="home-frame__image">
+              <img src="attached_assets/images/doc2.jpg" alt="Contact Lizaz" width="500" height="640" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="home-contact__form-wrap">
+          <h2 id="contact-title" class="section-title section-title--light">Contact Us</h2>
+          <form class="contact-form" action="/contact" method="get">
+            <div class="contact-form__grid">
+              <label class="contact-form__field">
+                <span>First Name</span>
+                <input type="text" name="firstName" placeholder="Enter your first name">
+              </label>
+              <label class="contact-form__field">
+                <span>Last Name</span>
+                <input type="text" name="lastName" placeholder="Enter your last name">
+              </label>
+              <label class="contact-form__field">
+                <span>Email Address</span>
+                <input type="email" name="email" placeholder="Enter your Email Address">
+              </label>
+              <label class="contact-form__field">
+                <span>Phone No.</span>
+                <input type="tel" name="phone" placeholder="Enter your Phone No.">
+              </label>
+              <label class="contact-form__field">
+                <span>Services</span>
+                <select name="service">
+                  <option value="" selected disabled>Select A Service</option>
+                  <option>Document Authentication</option>
+                  <option>Witnessing Signatures</option>
+                  <option>Real Estate Closings</option>
+                  <option>Certifying Copies</option>
+                  <option>Administering Oaths</option>
+                </select>
+              </label>
+              <label class="contact-form__field">
+                <span>Subject</span>
+                <input type="text" name="subject" placeholder="Enter Subject">
+              </label>
+            </div>
+            <label class="contact-form__field contact-form__field--full">
+              <span>Message</span>
+              <textarea name="message" rows="4" placeholder="Enter Your Message Here"></textarea>
+            </label>
+            <button type="submit" class="btn btn--primary">Submit now</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="home-section home-blog" aria-labelledby="blog-title">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <p class="section-label">Our Blog</p>
+          <h2 id="blog-title" class="section-title">Our Latest News</h2>
+        </div>
+
+        <div class="home-blog__grid">
+          <article class="blog-card">
+            <img src="attached_assets/images/visa.jpg" alt="Legal documentation" width="400" height="260" loading="lazy">
+            <div class="blog-card__body">
+              <span class="blog-card__tag">Legal Documentation</span>
+              <h3 class="blog-card__title">The Top 5 Documents You Should Always Notarize</h3>
+              <p>Don't risk the validity of your important papers. Discover the crucial documents that require notarization to ensure their legal standing and protect your interests. From wills to property deeds.</p>
+              <div class="blog-card__meta">
+                <time datetime="2020-09-02">2, Sept 2020</time>
+              </div>
+            </div>
+          </article>
+          <article class="blog-card">
+            <img src="attached_assets/images/attestation.jpg" alt="Mobile notary services" width="400" height="260" loading="lazy">
+            <div class="blog-card__body">
+              <span class="blog-card__tag">Mobile Notary Services</span>
+              <h3 class="blog-card__title">Mobile Notary Services, Convenience at Your Doorstep</h3>
+              <p>Explore the benefits of mobile notary services and how they're changing the game. Learn when to opt for a mobile notary, what to expect during the process.</p>
+              <div class="blog-card__meta">
+                <time datetime="2020-08-20">20, Aug 2020</time>
+              </div>
+            </div>
+          </article>
+          <article class="blog-card">
+            <img src="attached_assets/images/golden_visa.jpg" alt="Power of attorney guide" width="400" height="260" loading="lazy">
+            <div class="blog-card__body">
+              <span class="blog-card__tag">Legal Guidance</span>
+              <h3 class="blog-card__title">Understanding Power of Attorney, Your Legal Guide</h3>
+              <p>Demystify the concept of Power of Attorney and its crucial role in legal matters. This comprehensive guide explains different types of POA, when you might need one to make it legally binding.</p>
+              <div class="blog-card__meta">
+                <time datetime="2020-08-12">12, Aug 2020</time>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </main>
