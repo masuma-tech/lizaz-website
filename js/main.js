@@ -181,3 +181,125 @@ function initHeroParallax() {
 
 initScrollReveal();
 initHeroParallax();
+
+function parseCountStat(text) {
+  const value = text.trim();
+  if (!/\d/.test(value)) return null;
+  if (/[–-]\d/.test(value)) return null;
+
+  const kMatch = value.match(/^([\d,]+)K(\+)?$/i);
+  if (kMatch) {
+    const target = parseInt(kMatch[1].replace(/,/g, ''), 10) * 1000;
+    const plus = kMatch[2] || '';
+    return {
+      target,
+      format: (n) => {
+        if (n >= 1000) return `${Math.round(n / 1000)}K${plus}`;
+        return `${n}${plus}`;
+      },
+    };
+  }
+
+  const match = value.match(/^([\d,]+)(.*)$/);
+  if (!match) return null;
+
+  const target = parseInt(match[1].replace(/,/g, ''), 10);
+  if (Number.isNaN(target)) return null;
+
+  const suffix = match[2];
+  const useCommas = match[1].includes(',');
+
+  return {
+    target,
+    format: (n) => {
+      const num = useCommas ? n.toLocaleString('en-US') : String(n);
+      return `${num}${suffix}`;
+    },
+  };
+}
+
+function animateCountUp(el, options = {}) {
+  const original = el.textContent.trim();
+  const parsed = parseCountStat(original);
+  if (!parsed) return;
+
+  const { target, format } = parsed;
+  if (target <= 1) {
+    el.textContent = original;
+    return;
+  }
+
+  const duration = options.duration ?? Math.min(2200, 900 + target * 8);
+  const delay = options.delay ?? 0;
+  const startedAt = performance.now();
+
+  el.textContent = format(1);
+
+  function tick(now) {
+    if (now - startedAt < delay) {
+      requestAnimationFrame(tick);
+      return;
+    }
+
+    const elapsed = now - startedAt - delay;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - (1 - progress) ** 3;
+    const current = Math.max(1, Math.round(eased * target));
+
+    el.textContent = format(current);
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = original;
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
+
+function initCountUpStats() {
+  if (prefersReducedMotion) return;
+
+  const runCount = (el, delay = 0) => {
+    if (el.dataset.countAnimated === 'true') return;
+    el.dataset.countAnimated = 'true';
+    animateCountUp(el, { delay });
+  };
+
+  document.querySelectorAll('.page-hero--split__stat').forEach((el, i) => {
+    runCount(el, 350 + i * 140);
+  });
+
+  document.querySelectorAll('.hero-stat__value').forEach((el, i) => {
+    runCount(el, 450 + i * 120);
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.about-stat__value').forEach((el, i) => {
+      runCount(el, i * 120);
+    });
+    return;
+  }
+
+  document.querySelectorAll('.about-stat').forEach((stat, i) => {
+    const valueEl = stat.querySelector('.about-stat__value');
+    if (!valueEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runCount(valueEl, i * 140);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.35, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    observer.observe(stat);
+  });
+}
+
+initCountUpStats();

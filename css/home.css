@@ -183,6 +183,7 @@
   font-weight: 700;
   color: var(--gold-light);
   line-height: 1.2;
+  font-variant-numeric: tabular-nums;
 }
 
 .hero-stat__label {

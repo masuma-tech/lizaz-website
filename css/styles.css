@@ -193,6 +193,10 @@ button {
   align-items: center;
 }
 
+.header .logo {
+  margin-left: clamp(-3rem, -5vw, -2rem);
+}
+
 .logo__img {
   display: block;
   height: 64px;
@@ -248,7 +252,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(1rem, 2vw, 1.75rem);
+  gap: clamp(1.5rem, 3vw, 2.25rem);
   justify-self: center;
 }
 
