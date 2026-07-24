@@ -130,7 +130,7 @@ body[data-page="about"] .page-hero {
 @media (max-width: 768px) {
   .page-hero--split__grid {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
 
   .page-hero--split__aside {
@@ -152,6 +152,10 @@ body[data-page="about"] .page-hero {
 
   .page-hero--split__main .page__title {
     max-width: none;
+  }
+
+  .page-hero--split {
+    padding: 2.25rem 0 2rem;
   }
 }
 
@@ -954,7 +958,7 @@ body[data-page="blog"] .about-values {
   background: var(--bg);
   color: var(--navy);
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
 }
 
@@ -1029,9 +1033,25 @@ body[data-page="blog"] .about-values {
   .page-blog__grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .page-contact-form__wrap {
+    padding: 1.5rem;
+  }
+
+  .about-commitment__media img {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 @media (max-width: 640px) {
+  .page {
+    padding: clamp(2rem, 6vw, 3rem) 0;
+  }
+
+  .page-hero {
+    padding: 2rem 0 1.75rem;
+  }
+
   .about-stats__grid,
   .about-values__grid,
   .about-values__grid--three,
@@ -1040,8 +1060,28 @@ body[data-page="blog"] .about-values {
     grid-template-columns: 1fr;
   }
 
+  .about-stats__grid {
+    gap: 0.875rem;
+  }
+
+  .about-stat {
+    padding: 1.5rem 1rem;
+  }
+
+  .about-value-card {
+    padding: 1.5rem 1.25rem;
+  }
+
   .page-contact-form__fields {
     grid-template-columns: 1fr;
+  }
+
+  .page-contact-form__wrap {
+    padding: 1.25rem;
+  }
+
+  .about-cta {
+    padding: 2.5rem 0;
   }
 
   .about-cta__actions {
@@ -1051,5 +1091,30 @@ body[data-page="blog"] .about-values {
 
   .about-cta__actions .btn {
     width: 100%;
+  }
+
+  body[data-page="about"] .about-intro__media,
+  .blog-featured .about-intro__media,
+  .services-intro .about-intro__media {
+    width: min(220px, 70%);
+  }
+
+  .page-service-card__body,
+  .page-blog-card__body {
+    padding: 1.125rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-hero--split__stat {
+    font-size: 2rem;
+  }
+
+  .page-hero--split__label {
+    font-size: 1.625rem;
+  }
+
+  .about-stat__value {
+    font-size: 1.5rem;
   }
 }

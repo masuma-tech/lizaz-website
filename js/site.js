@@ -69,11 +69,11 @@
         </button>
       </div>
     </div>
-    <nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile navigation">
-      ${navLinks}
-      <a href="${CONTACT_HREF}" class="nav__cta nav__cta--mobile${ctaActive}">Get in Touch</a>
-    </nav>
-  </header>`;
+  </header>
+  <nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile navigation">
+    ${navLinks}
+    <a href="${CONTACT_HREF}" class="nav__cta nav__cta--mobile${ctaActive}">Get in Touch</a>
+  </nav>`;
   }
 
   function buildFooter() {
