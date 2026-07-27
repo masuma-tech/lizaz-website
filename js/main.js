@@ -184,7 +184,7 @@ function initHeroParallax() {
 
   window.addEventListener('scroll', () => {
     const offset = Math.min(window.scrollY * 0.22, 120);
-    heroBg.style.transform = `scale(1.06) translateY(${offset}px)`;
+    heroBg.style.transform = `scale(1.01) translateY(${-offset}px)`;
   }, { passive: true });
 }
 

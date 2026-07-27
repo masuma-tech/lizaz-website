@@ -74,11 +74,15 @@
 
 .home-hero__bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: calc(100% + 140px);
   background:
     linear-gradient(115deg, rgba(20, 29, 61, 0.96) 0%, rgba(20, 29, 61, 0.9) 45%, rgba(30, 45, 92, 0.82) 100%),
-    url('../attached_assets/images/hero.png') center / cover no-repeat;
-  transform: scale(1.06);
+    url('../attached_assets/images/hero.png') center 4.5rem / cover no-repeat;
+  transform: scale(1.02);
+  transform-origin: center top;
   will-change: transform;
   transition: transform 0.15s linear;
 }
