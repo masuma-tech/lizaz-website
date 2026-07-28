@@ -41,23 +41,23 @@
           </ul>
         </div>
         <div class="page-contact-form__wrap">
-          <form class="page-contact-form__form" action="/contact" method="get">
+          <form class="page-contact-form__form js-contact-form" method="post" action="/api/contact" novalidate>
             <div class="page-contact-form__fields">
               <label class="page-contact-form__field">
                 <span>First Name</span>
-                <input type="text" name="firstName" placeholder="Enter your first name" required>
+                <input type="text" name="firstName" placeholder="Enter your first name" required autocomplete="given-name">
               </label>
               <label class="page-contact-form__field">
                 <span>Last Name</span>
-                <input type="text" name="lastName" placeholder="Enter your last name" required>
+                <input type="text" name="lastName" placeholder="Enter your last name" required autocomplete="family-name">
               </label>
               <label class="page-contact-form__field">
                 <span>Email Address</span>
-                <input type="email" name="email" placeholder="Enter your email address" required>
+                <input type="email" name="email" placeholder="Enter your email address" required autocomplete="email">
               </label>
               <label class="page-contact-form__field">
                 <span>Phone No.</span>
-                <input type="tel" name="phone" placeholder="Enter your phone number">
+                <input type="tel" name="phone" placeholder="Enter your phone number" autocomplete="tel">
               </label>
               <label class="page-contact-form__field">
                 <span>Services</span>
@@ -80,6 +80,7 @@
               <span>Message</span>
               <textarea name="message" rows="5" placeholder="Describe your requirements" required></textarea>
             </label>
+            <p class="contact-form-status" role="status" aria-live="polite" hidden></p>
             <button type="submit" class="btn btn--primary">Submit Now</button>
           </form>
         </div>

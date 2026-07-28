@@ -312,3 +312,100 @@ function initCountUpStats() {
 }
 
 initCountUpStats();
+
+function setContactFormStatus(form, message, type) {
+  const status = form.querySelector('.contact-form-status');
+  if (!status) return;
+
+  status.hidden = !message;
+  status.textContent = message || '';
+  status.classList.toggle('contact-form-status--success', type === 'success');
+  status.classList.toggle('contact-form-status--error', type === 'error');
+}
+
+function getContactFormPayload(form) {
+  const data = new FormData(form);
+  return {
+    firstName: String(data.get('firstName') || '').trim(),
+    lastName: String(data.get('lastName') || '').trim(),
+    email: String(data.get('email') || '').trim(),
+    phone: String(data.get('phone') || '').trim(),
+    service: String(data.get('service') || '').trim(),
+    subject: String(data.get('subject') || '').trim(),
+    message: String(data.get('message') || '').trim(),
+  };
+}
+
+function validateContactForm(payload) {
+  if (!payload.firstName || !payload.lastName || !payload.email || !payload.message) {
+    return 'Please fill in your name, email, and message.';
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+    return 'Please enter a valid email address.';
+  }
+
+  if (!payload.service) {
+    return 'Please select a service.';
+  }
+
+  return null;
+}
+
+function initContactForms() {
+  document.querySelectorAll('.js-contact-form').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const payload = getContactFormPayload(form);
+      const validationError = validateContactForm(payload);
+
+      if (validationError) {
+        setContactFormStatus(form, validationError, 'error');
+        return;
+      }
+
+      const originalLabel = submitButton?.textContent;
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+      setContactFormStatus(form, '', null);
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to send message. Please try again.');
+        }
+
+        form.reset();
+        setContactFormStatus(
+          form,
+          'Thank you. Your message has been sent. We will get back to you shortly.',
+          'success'
+        );
+      } catch (error) {
+        setContactFormStatus(
+          form,
+          error instanceof Error ? error.message : 'Failed to send message. Please try again.',
+          'error'
+        );
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalLabel || 'Submit Now';
+        }
+      }
+    });
+  });
+}
+
+initContactForms();

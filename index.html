@@ -402,27 +402,27 @@
         </div>
         <div class="home-contact__form-wrap">
           <h2 id="contact-title" class="section-title section-title--light">Contact Us</h2>
-          <form class="contact-form" action="/contact" method="get">
+          <form class="contact-form js-contact-form" method="post" action="/api/contact" novalidate>
             <div class="contact-form__grid">
               <label class="contact-form__field">
                 <span>First Name</span>
-                <input type="text" name="firstName" placeholder="Enter your first name">
+                <input type="text" name="firstName" placeholder="Enter your first name" required autocomplete="given-name">
               </label>
               <label class="contact-form__field">
                 <span>Last Name</span>
-                <input type="text" name="lastName" placeholder="Enter your last name">
+                <input type="text" name="lastName" placeholder="Enter your last name" required autocomplete="family-name">
               </label>
               <label class="contact-form__field">
                 <span>Email Address</span>
-                <input type="email" name="email" placeholder="Enter your Email Address">
+                <input type="email" name="email" placeholder="Enter your Email Address" required autocomplete="email">
               </label>
               <label class="contact-form__field">
                 <span>Phone No.</span>
-                <input type="tel" name="phone" placeholder="Enter your Phone No.">
+                <input type="tel" name="phone" placeholder="Enter your Phone No." autocomplete="tel">
               </label>
               <label class="contact-form__field">
                 <span>Services</span>
-                <select name="service">
+                <select name="service" required>
                   <option value="" selected disabled>Select A Service</option>
                   <option>Document Clearance</option>
                   <option>Visa Services</option>
@@ -439,8 +439,9 @@
             </div>
             <label class="contact-form__field contact-form__field--full">
               <span>Message</span>
-              <textarea name="message" rows="4" placeholder="Enter Your Message Here"></textarea>
+              <textarea name="message" rows="4" placeholder="Enter Your Message Here" required></textarea>
             </label>
+            <p class="contact-form-status" role="status" aria-live="polite" hidden></p>
             <button type="submit" class="btn btn--primary">Submit now</button>
           </form>
         </div>
