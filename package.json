@@ -2,8 +2,25 @@
   "name": "lizaz-website",
   "version": "1.0.0",
   "description": "Lizaz website",
+  "type": "module",
   "scripts": {
     "start": "node --env-file=.env server.js",
-    "dev": "node --env-file=.env server.js"
+    "dev": "node --env-file=.env server.js",
+    "db:push": "drizzle-kit push",
+    "db:seed": "tsx server/seed.ts"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.39.1",
+    "drizzle-zod": "^0.7.0",
+    "pg": "^8.16.3",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.11",
+    "@types/pg": "^8.15.4",
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.20.5",
+    "typescript": "5.6.3"
   }
 }
