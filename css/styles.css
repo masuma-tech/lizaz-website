@@ -10,9 +10,9 @@
   --container: 1200px;
   --header-h: 80px;
   --topbar-h: 44px;
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --shadow-sm: 0 2px 12px rgba(14, 18, 40, 0.08);
   --shadow-md: 0 8px 32px rgba(14, 18, 40, 0.13);
   --shadow-lg: 0 16px 52px rgba(14, 18, 40, 0.17);
@@ -351,7 +351,7 @@ button {
   height: 40px;
   padding: 8px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .menu-toggle span {
