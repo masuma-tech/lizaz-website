@@ -202,7 +202,7 @@ button {
 }
 
 .header .logo {
-  --logo-pad: 18px;
+  --logo-pad: 20px;
   --logo-h: calc(var(--header-h) - (var(--logo-pad) * 2));
   margin-left: clamp(-1.5rem, -2.5vw, 0rem);
   position: relative;
@@ -787,7 +787,7 @@ main {
   }
 
   .header .logo {
-    --logo-pad: 18px;
+    --logo-pad: 22px;
   }
 }
 
@@ -798,7 +798,7 @@ main {
   }
 
   .header .logo {
-    --logo-pad: 14px;
+    --logo-pad: 16px;
     margin-left: 0;
   }
 
@@ -874,7 +874,7 @@ main {
   }
 
   .header .logo {
-    --logo-pad: 12px;
+    --logo-pad: 14px;
   }
 
   .logo--footer .logo__img {
