@@ -182,10 +182,22 @@ function initHeroParallax() {
   const heroBg = document.querySelector('.home-hero__bg');
   if (!heroBg) return;
 
-  window.addEventListener('scroll', () => {
+  let ticking = false;
+
+  const update = () => {
     const offset = Math.min(window.scrollY * 0.22, 120);
     heroBg.style.transform = `scale(1.01) translateY(${-offset}px)`;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
   }, { passive: true });
+
+  update();
 }
 
 initScrollReveal();
