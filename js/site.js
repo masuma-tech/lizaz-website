@@ -81,7 +81,7 @@
     <div class="container footer__main">
       <div class="footer__brand">
         ${buildLogo('footer')}
-        <p class="footer__desc">Trusted document clearance, visa, immigration, golden visa, and business setup services across the UAE.</p>
+        <p class="footer__desc">Trusted document clearance, visa, immigration, golden visa, and business setup — delivered with care across the UAE.</p>
       </div>
       <div>
         <h3 class="footer__heading">Quick Links</h3>
