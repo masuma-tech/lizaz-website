@@ -989,6 +989,46 @@
   font-size: 0.9375rem;
 }
 
+.home-testimonials__header .section-label {
+  font-family: var(--font-accent);
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
+}
+
+.home-testimonials__header .home-subtitle::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 0.875rem;
+  margin-inline: auto;
+  background: var(--gold-gradient);
+  border-radius: 999px;
+}
+
+.home-testimonials__header .section-lead {
+  font-size: 0.9375rem;
+}
+
+.home-blog__header .section-label {
+  font-family: var(--font-accent);
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
+}
+
+.home-blog__header .home-subtitle::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 0.875rem;
+  margin-inline: auto;
+  background: var(--gold-gradient);
+  border-radius: 999px;
+}
+
+.home-blog__header .section-lead {
+  font-size: 0.9375rem;
+}
+
 .why-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

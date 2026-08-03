@@ -277,11 +277,11 @@ body[data-page="home"] {
 body[data-page="about"] .about-intro__grid {
   grid-template-columns: auto 1fr;
   align-items: stretch;
-  gap: clamp(2.5rem, 5vw, 4rem);
+  gap: 3.25rem;
 }
 
 body[data-page="about"] .about-intro__content {
-  padding-left: clamp(1.25rem, 3vw, 2.75rem);
+  padding-left: 0;
 }
 
 body[data-page="about"] .about-intro__media {
@@ -289,7 +289,7 @@ body[data-page="about"] .about-intro__media {
   aspect-ratio: 3 / 4;
   width: auto;
   align-self: stretch;
-  min-height: 280px;
+  min-height: 340px;
 }
 
 body[data-page="about"] .about-media {
@@ -400,6 +400,47 @@ body[data-page="about"] .about-media__img {
 body[data-page="about"] .about-values {
   background: var(--surface-elevated);
   border-block: none;
+}
+
+body[data-page="about"] .about-values__header .section-label,
+body[data-page="about"] .about-commitment__content .section-label {
+  font-family: var(--font-accent);
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
+}
+
+body[data-page="about"] .about-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  text-wrap: balance;
+  margin-top: 0.625rem;
+  color: var(--navy);
+}
+
+body[data-page="about"] .about-values__header .about-subtitle::after,
+body[data-page="about"] .about-commitment__content .about-subtitle::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 0.875rem;
+  background: var(--gold-gradient);
+  border-radius: 999px;
+}
+
+body[data-page="about"] .about-values__header .about-subtitle::after {
+  margin-inline: auto;
+}
+
+body[data-page="about"] .about-values__header .section-lead {
+  font-size: 0.9375rem;
+}
+
+body[data-page="about"] .about-commitment__content .about-subtitle + .section-text {
+  margin-top: 1.5rem;
 }
 
 body[data-page="blog"] .about-values {
@@ -543,6 +584,10 @@ body[data-page="blog"] .about-values {
 
 .about-commitment {
   background: var(--surface-elevated);
+}
+
+body[data-page="about"] .about-commitment {
+  background: var(--surface-muted);
 }
 
 .about-commitment__content .btn {
@@ -1000,7 +1045,7 @@ body[data-page="blog"] .about-values {
   }
 
   body[data-page="about"] .about-intro__media {
-    width: min(240px, 62%);
+    width: min(260px, 66%);
     height: auto;
     min-height: 0;
     aspect-ratio: 3 / 4;
