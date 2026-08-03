@@ -40,69 +40,77 @@
   <div id="site-header"></div>
 
   <main id="main">
-    <header class="page-hero page-hero--split" aria-labelledby="blog-page-title">
-      <div class="container page-hero--split__grid">
-        <div class="page-hero--split__main">
-          <p class="page-hero--split__label">Our Blog</p>
-          <h1 id="blog-page-title" class="page__title">
-            <span class="page-hero--split__title-line">Latest UAE Visa Updates</span>
-            <span class="page-hero--split__title-accent">&amp; Requirements</span>
-          </h1>
+    <div id="blog-list-view">
+      <header class="page-hero page-hero--split" aria-labelledby="blog-page-title">
+        <div class="container page-hero--split__grid">
+          <div class="page-hero--split__main">
+            <p class="page-hero--split__label">Our Blog</p>
+            <h1 id="blog-page-title" class="page__title">
+              <span class="page-hero--split__title-line">Latest UAE Visa Updates</span>
+              <span class="page-hero--split__title-accent">&amp; Requirements</span>
+            </h1>
+          </div>
+          <aside class="page-hero--split__aside" aria-label="Blog highlight">
+            <span class="page-hero--split__stat">50+</span>
+            <span class="page-hero--split__stat-label">Articles</span>
+          </aside>
         </div>
-        <aside class="page-hero--split__aside" aria-label="Blog highlight">
-          <span class="page-hero--split__stat">50+</span>
-          <span class="page-hero--split__stat-label">Articles</span>
-        </aside>
-      </div>
-    </header>
+      </header>
 
-    <section class="page about-intro blog-featured reveal" aria-labelledby="featured-title" id="blog-featured" hidden>
-      <div class="container about-intro__grid">
-        <div class="about-intro__media">
-          <img class="blog-featured__img" id="blog-featured-image" src="attached_assets/images/visa.jpg" alt="" width="300" height="400" loading="lazy">
+      <section class="page about-intro blog-featured reveal" aria-labelledby="featured-title" id="blog-featured" hidden>
+        <div class="container about-intro__grid">
+          <div class="about-intro__media">
+            <img class="blog-featured__img" id="blog-featured-image" src="attached_assets/images/visa.jpg" alt="" width="300" height="400" loading="lazy">
+          </div>
+          <div class="about-intro__content">
+            <p class="section-label">Featured Article</p>
+            <h2 id="featured-title" class="section-title"></h2>
+            <p class="section-text" id="blog-featured-excerpt"></p>
+            <a class="btn btn--primary" id="blog-featured-link" href="/blog">Read article</a>
+          </div>
         </div>
-        <div class="about-intro__content">
-          <p class="section-label">Featured Article</p>
-          <h2 id="featured-title" class="section-title"></h2>
-          <p class="section-text" id="blog-featured-excerpt"></p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="about-stats reveal" aria-label="Blog highlights">
-      <div class="container about-stats__grid">
-        <div class="about-stat">
-          <span class="about-stat__value">50+</span>
-          <span class="about-stat__label">Articles Published</span>
-        </div>
-        <div class="about-stat">
-          <span class="about-stat__value">6</span>
-          <span class="about-stat__label">Topic Categories</span>
-        </div>
-        <div class="about-stat">
-          <span class="about-stat__value">Weekly</span>
-          <span class="about-stat__label">New Updates</span>
-        </div>
-        <div class="about-stat">
-          <span class="about-stat__value">Expert</span>
-          <span class="about-stat__label">Written by Specialists</span>
-        </div>
-      </div>
-    </section>
+      <section class="page page-blog reveal" aria-label="Blog articles">
+        <div class="container">
+          <div class="page-blog__toolbar">
+            <div class="page-blog__toolbar-copy">
+              <p class="page-blog__count" id="blog-posts-count">Expert Guides by Lizaz</p>
+              <p class="page-blog__hint">Browse by topic to find visa, business, and document clearance answers.</p>
+            </div>
+            <div class="page-blog__filters" id="blog-filters" role="group" aria-label="Filter articles by topic"></div>
+          </div>
 
-    <section class="page page-blog reveal" aria-labelledby="latest-title">
-      <div class="container">
-        <div class="section-header section-header--center">
-          <p class="section-label">Latest News</p>
-          <h2 id="latest-title" class="section-title">Our Latest Articles</h2>
-          <p class="section-lead">Stay informed with guides, tips, and updates from our document clearance and visa specialists.</p>
+          <div class="page-blog__grid" id="blog-posts-grid" aria-live="polite">
+            <p class="section-text" id="blog-loading">Loading articles...</p>
+          </div>
         </div>
+      </section>
+    </div>
 
-        <div class="page-blog__grid" id="blog-posts-grid" aria-live="polite">
-          <p class="section-text" id="blog-loading">Loading articles...</p>
+    <article class="page page-blog-article" id="blog-article-view" hidden>
+      <a class="page-blog-article__back" href="/blog" aria-label="Back to all articles">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+          <path d="M15.5 5.5 9 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="container page-blog-article__wrap">
+        <p class="section-text" id="blog-article-loading">Loading article...</p>
+        <div id="blog-article" hidden>
+          <header class="page-blog-article__header">
+            <span class="page-blog-card__tag" id="blog-article-category"></span>
+            <h1 class="page-blog-article__title" id="blog-article-title"></h1>
+            <div class="page-blog-article__meta">
+              <span id="blog-article-author"></span>
+              <time id="blog-article-date"></time>
+            </div>
+          </header>
+          <img class="page-blog-article__image" id="blog-article-image" src="" alt="" width="1200" height="630">
+          <div class="page-blog-article__content" id="blog-article-content"></div>
         </div>
+        <p class="section-text" id="blog-article-error" hidden>Unable to load this article. Please go back and try again.</p>
       </div>
-    </section>
+    </article>
   </main>
 
   <div id="site-footer"></div>
