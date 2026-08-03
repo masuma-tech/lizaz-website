@@ -99,7 +99,7 @@
   left: 0;
   height: calc(100% + 140px);
   background:
-    linear-gradient(118deg, rgba(20, 29, 61, 0.92) 0%, rgba(20, 29, 61, 0.88) 45%, rgba(20, 29, 61, 0.82) 100%),
+    linear-gradient(118deg, rgba(28, 39, 79, 0.92) 0%, rgba(28, 39, 79, 0.88) 45%, rgba(28, 39, 79, 0.82) 100%),
     url('../attached_assets/images/hero.png') center 4.5rem / cover no-repeat;
   transform: scale(1.02);
   transform-origin: center top;
@@ -123,7 +123,7 @@
   inset: 0;
   background:
     radial-gradient(circle at 12% 88%, rgba(184, 149, 90, 0.38) 0%, transparent 42%),
-    linear-gradient(180deg, transparent 70%, rgba(20, 29, 61, 0.28) 100%);
+    linear-gradient(180deg, transparent 70%, rgba(28, 39, 79, 0.28) 100%);
   pointer-events: none;
 }
 
@@ -621,7 +621,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(20, 29, 61, 0.75) 100%);
+  background: linear-gradient(180deg, transparent 40%, rgba(28, 39, 79, 0.75) 100%);
 }
 
 .service-card__icon {
@@ -814,7 +814,7 @@
 /* FAQ */
 .home-faq {
   background:
-    linear-gradient(rgba(20, 29, 61, 0.93), rgba(20, 29, 61, 0.93)),
+    linear-gradient(rgba(28, 39, 79, 0.93), rgba(28, 39, 79, 0.93)),
     url('../attached_assets/images/doc1.jpg') center / cover no-repeat;
   color: #ffffff;
 }
@@ -1092,7 +1092,7 @@
 /* Quote */
 .home-quote {
   background:
-    linear-gradient(rgba(20, 29, 61, 0.93), rgba(20, 29, 61, 0.93)),
+    linear-gradient(rgba(28, 39, 79, 0.93), rgba(28, 39, 79, 0.93)),
     url('../attached_assets/images/hero.png') center / cover no-repeat;
   color: #ffffff;
 }
@@ -1264,7 +1264,7 @@
 /* Contact */
 .home-contact {
   background:
-    linear-gradient(rgba(20, 29, 61, 0.93), rgba(20, 29, 61, 0.93)),
+    linear-gradient(rgba(28, 39, 79, 0.93), rgba(28, 39, 79, 0.93)),
     url('../attached_assets/images/visa_stamp.jpg') center / cover no-repeat;
   color: #ffffff;
 }
@@ -1331,7 +1331,7 @@
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: rgba(20, 29, 61, 0.45);
+  color: rgba(28, 39, 79, 0.45);
 }
 
 .contact-form textarea {
@@ -1438,7 +1438,7 @@
 
 .blog-card__meta time {
   font-size: 0.875rem;
-  color: rgba(20, 29, 61, 0.65);
+  color: rgba(28, 39, 79, 0.65);
 }
 
 /* Responsive */

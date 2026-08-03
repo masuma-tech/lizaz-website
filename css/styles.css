@@ -4,7 +4,7 @@
   --bg: #f6f9fd;
   --surface: #f9fbfd;
   --surface-elevated: #ffffff;
-  --text: #141d3d;
+  --text: #1c274f;
   --text-secondary: #445275;
   --border: #d8dee9;
   --container: 1200px;
@@ -23,20 +23,20 @@
   --font-heading: 'Merriweather', Georgia, serif;
   --font-body: 'Montserrat', system-ui, -apple-system, sans-serif;
   --font-accent: 'Niconne', cursive;
-  --navy: #141d3d;
-  --navy-light: #141d3d;
-  --navy-mid: #141d3d;
-  --brand-blue: #141d3d;
-  --brand-blue-light: #141d3d;
+  --navy: #1c274f;
+  --navy-light: #24325c;
+  --navy-mid: #1f2c56;
+  --brand-blue: #1c274f;
+  --brand-blue-light: #24325c;
   --gold: #b8955a;
   --gold-light: #d4b77a;
   --gold-dark: #967842;
   --gold-gradient: linear-gradient(135deg, #e2c99a 0%, #b8955a 48%, #8f6f3a 100%);
-  --navy-gradient: #141d3d;
+  --navy-gradient: #1c274f;
   --surface-muted: #eef2f8;
   --surface-glass: rgba(255, 255, 255, 0.92);
-  --nav-bg: rgba(20, 29, 61, 0.96);
-  --nav-bg-solid: #141d3d;
+  --nav-bg: rgba(28, 39, 79, 0.96);
+  --nav-bg-solid: #1c274f;
   --nav-border: rgba(255, 255, 255, 0.1);
   --nav-text: rgba(255, 255, 255, 0.78);
   --nav-text-active: #ffffff;
@@ -60,7 +60,7 @@ body {
   background:
     radial-gradient(ellipse 95% 58% at 50% -18%, rgba(184, 149, 90, 0.05), transparent 55%),
     radial-gradient(ellipse 75% 48% at 100% 5%, rgba(74, 108, 160, 0.035), transparent 52%),
-    radial-gradient(ellipse 55% 50% at 0% 100%, rgba(20, 29, 61, 0.02), transparent 55%),
+    radial-gradient(ellipse 55% 50% at 0% 100%, rgba(28, 39, 79, 0.02), transparent 55%),
     var(--bg);
   color: var(--text);
   line-height: 1.75;
