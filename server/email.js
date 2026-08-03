@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const notificationEmail =
-  process.env.RESEND_NOTIFICATION_EMAIL ?? "support@lizaz.com";
+  process.env.RESEND_NOTIFICATION_EMAIL ?? "Info@lizaz.ae";
 const fromEmail =
   process.env.RESEND_FROM_EMAIL ?? "Lizaz <onboarding@resend.dev>";
 

@@ -4,6 +4,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { z } from "zod";
 import { sendContactNotificationEmail } from "./server/email.js";
+import {
+  createContact,
+  listPublishedBlogPosts,
+  getBlogPostBySlug,
+} from "./server/storage.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -66,7 +71,10 @@ function isAuthorized(req) {
 }
 
 function sendJson(res, statusCode, payload) {
-  res.writeHead(statusCode, { "Content-Type": "application/json; charset=utf-8" });
+  res.writeHead(statusCode, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Access-Control-Allow-Origin": "*",
+  });
   res.end(JSON.stringify(payload));
 }
 
@@ -129,17 +137,17 @@ async function handleContactApi(req, res) {
       message: validated.message,
     };
 
+    await createContact(contact);
+
+    let emailSent = true;
     try {
       await sendContactNotificationEmail(contact);
     } catch (emailError) {
+      emailSent = false;
       console.error("Failed to send contact notification email:", emailError);
-      sendJson(res, 502, {
-        error: "Failed to send message. Please try again later.",
-      });
-      return;
     }
 
-    sendJson(res, 201, { ok: true });
+    sendJson(res, 201, { ok: true, emailSent });
   } catch (error) {
     if (error instanceof z.ZodError) {
       sendJson(res, 400, {
@@ -156,6 +164,42 @@ async function handleContactApi(req, res) {
 
     console.error("Failed to submit contact form:", error);
     sendJson(res, 500, { error: "Failed to submit inquiry" });
+  }
+}
+
+async function handleBlogsApi(req, res, url) {
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    });
+    res.end();
+    return;
+  }
+
+  if (req.method !== "GET") {
+    sendJson(res, 405, { error: "Method not allowed" });
+    return;
+  }
+
+  try {
+    const slug = url.searchParams.get("slug");
+    if (slug) {
+      const post = await getBlogPostBySlug(slug);
+      if (!post || !post.published) {
+        sendJson(res, 404, { error: "Blog post not found" });
+        return;
+      }
+      sendJson(res, 200, { post });
+      return;
+    }
+
+    const posts = await listPublishedBlogPosts();
+    sendJson(res, 200, { posts });
+  } catch (error) {
+    console.error("Failed to fetch blog posts:", error);
+    sendJson(res, 500, { error: "Failed to load blog posts" });
   }
 }
 
@@ -226,6 +270,11 @@ const server = http.createServer((req, res) => {
 
   if (url.pathname === "/api/contact") {
     handleContactApi(req, res);
+    return;
+  }
+
+  if (url.pathname === "/api/blogs") {
+    handleBlogsApi(req, res, url);
     return;
   }
 

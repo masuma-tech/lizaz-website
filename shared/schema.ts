@@ -19,12 +19,16 @@ export const users = pgTable("users", {
 export const blogPosts = pgTable("blog_posts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
   excerpt: text("excerpt").notNull(),
   content: text("content").notNull(),
   category: text("category").notNull(),
-  author: text("author").notNull(),
+  author: text("author").notNull().default("Lizaz Team"),
   date: text("date").notNull(),
   image: text("image").notNull(),
+  published: boolean("published").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const contacts = pgTable("contacts", {
@@ -47,6 +51,8 @@ export const insertUserSchema = createInsertSchema(users).omit({
 
 export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
   id: true,
+  createdAt: true,
+  updatedAt: true,
 });
 
 export const insertContactSchema = createInsertSchema(contacts).omit({

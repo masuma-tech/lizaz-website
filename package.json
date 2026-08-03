@@ -4,10 +4,12 @@
   "description": "Lizaz website",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env server.js",
-    "dev": "node --env-file=.env server.js",
+    "start": "tsx --env-file=.env server.js",
+    "dev": "tsx --env-file=.env server.js",
     "db:push": "drizzle-kit push",
-    "db:seed": "tsx server/seed.ts"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx --env-file=.env server/seed.ts"
   },
   "dependencies": {
     "dotenv": "^17.4.2",

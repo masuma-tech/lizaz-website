@@ -56,15 +56,15 @@
       </div>
     </header>
 
-    <section class="page about-intro blog-featured reveal" aria-labelledby="featured-title">
+    <section class="page about-intro blog-featured reveal" aria-labelledby="featured-title" id="blog-featured" hidden>
       <div class="container about-intro__grid">
         <div class="about-intro__media">
-          <img class="blog-featured__img" src="attached_assets/images/visa.jpg" alt="UAE visa application guide" width="300" height="400" loading="lazy">
+          <img class="blog-featured__img" id="blog-featured-image" src="attached_assets/images/visa.jpg" alt="" width="300" height="400" loading="lazy">
         </div>
         <div class="about-intro__content">
           <p class="section-label">Featured Article</p>
-          <h2 id="featured-title" class="section-title">Lizaz helps you clear the entire path, from attestation to approval</h2>
-          <p class="section-text">This guide walks through each UAE visa type in plain language, the documents required for visa applications, and where applicants most often get tripped up during UAE visa processing.</p>
+          <h2 id="featured-title" class="section-title"></h2>
+          <p class="section-text" id="blog-featured-excerpt"></p>
         </div>
       </div>
     </section>
@@ -98,62 +98,8 @@
           <p class="section-lead">Stay informed with guides, tips, and updates from our document clearance and visa specialists.</p>
         </div>
 
-        <div class="page-blog__grid">
-          <article class="page-blog-card">
-            <img src="attached_assets/images/visa.jpg" alt="UAE visa application guide" width="400" height="260" loading="lazy">
-            <div class="page-blog-card__body">
-              <span class="page-blog-card__tag">Visa Services</span>
-              <h3 class="page-blog-card__title">A Complete Guide to UAE Visa Types and Requirements</h3>
-              <p>Understand employment, visit, family, and residence visas in the UAE. Learn which visa suits your situation and what documents you need to apply.</p>
-              <div class="page-blog-card__meta">
-                <time datetime="2025-03-15">15, Mar 2025</time>
-              </div>
-            </div>
-          </article>
-          <article class="page-blog-card">
-            <img src="attached_assets/images/business.jpg" alt="Business setup in UAE" width="400" height="260" loading="lazy">
-            <div class="page-blog-card__body">
-              <span class="page-blog-card__tag">Business Setup</span>
-              <h3 class="page-blog-card__title">Starting a Business in the UAE: Mainland vs Free Zone</h3>
-              <p>Compare mainland and free zone company formation options, licensing costs, visa quotas, and key steps to launch your business in Dubai.</p>
-              <div class="page-blog-card__meta">
-                <time datetime="2025-02-10">10, Feb 2025</time>
-              </div>
-            </div>
-          </article>
-          <article class="page-blog-card">
-            <img src="attached_assets/images/doc_clearance.jpg" alt="Document attestation guide" width="400" height="260" loading="lazy">
-            <div class="page-blog-card__body">
-              <span class="page-blog-card__tag">Document Clearance</span>
-              <h3 class="page-blog-card__title">Certificate Attestation in the UAE: Step-by-Step Guide</h3>
-              <p>Learn how MOFA, embassy, and consulate attestation works for educational, personal, and commercial documents — and how to avoid common delays.</p>
-              <div class="page-blog-card__meta">
-                <time datetime="2025-01-22">22, Jan 2025</time>
-              </div>
-            </div>
-          </article>
-          <article class="page-blog-card">
-            <img src="attached_assets/images/embassy.jpg" alt="Immigration compliance UAE" width="400" height="260" loading="lazy">
-            <div class="page-blog-card__body">
-              <span class="page-blog-card__tag">Immigration</span>
-              <h3 class="page-blog-card__title">UAE Immigration Compliance: What Expats Need to Know</h3>
-              <p>Residency rules, status changes, entry permits, and overstay penalties — a practical overview for individuals and families living in the UAE.</p>
-              <div class="page-blog-card__meta">
-                <time datetime="2025-01-08">8, Jan 2025</time>
-              </div>
-            </div>
-          </article>
-          <article class="page-blog-card">
-            <img src="attached_assets/images/tax.jpg" alt="PRO services UAE" width="400" height="260" loading="lazy">
-            <div class="page-blog-card__body">
-              <span class="page-blog-card__tag">Business Setup</span>
-              <h3 class="page-blog-card__title">PRO Services Explained: Why Your UAE Business Needs One</h3>
-              <p>From visa processing to government liaison and license renewals — how PRO services keep your business compliant and running smoothly.</p>
-              <div class="page-blog-card__meta">
-                <time datetime="2024-12-18">18, Dec 2024</time>
-              </div>
-            </div>
-          </article>
+        <div class="page-blog__grid" id="blog-posts-grid" aria-live="polite">
+          <p class="section-text" id="blog-loading">Loading articles...</p>
         </div>
       </div>
     </section>
@@ -162,5 +108,6 @@
   <div id="site-footer"></div>
   <script src="js/site.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/blog.js"></script>
 </body>
 </html>

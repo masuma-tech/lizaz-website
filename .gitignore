@@ -1,2 +1,6 @@
 .env
 node_modules/
+.pdf-preview/
+.DS_Store
+Thumbs.db
+*.log
