@@ -23,7 +23,7 @@ body[data-page="about"] .section-label,
 body[data-page="services"] .section-label,
 body[data-page="blog"] .section-label,
 body[data-page="contact"] .section-label {
-  font-size: clamp(1.85rem, 2.8vw, 2.25rem);
+  font-size: var(--fs-label);
 }
 
 body[data-page="about"] .section-label::after,
@@ -38,7 +38,7 @@ body[data-page="about"] .section-title,
 body[data-page="services"] .section-title,
 body[data-page="blog"] .section-title,
 body[data-page="contact"] .section-title {
-  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  font-size: var(--fs-title);
 }
 
 /* Inner page hero */
@@ -63,7 +63,7 @@ body[data-page="about"] .page-hero {
 @keyframes pageHeroFadeUp {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -71,10 +71,21 @@ body[data-page="about"] .page-hero {
   }
 }
 
-/* Split hero — label, title, lead + stat badge (About, Services, Blog, Contact) */
+@keyframes pageHeroStatIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Split hero — label, title + open stat (About, Services, Blog, Contact) */
 .page-hero--split {
   text-align: left;
-  padding: clamp(3.5rem, 8vw, 5.75rem) 0 clamp(3.25rem, 6.5vw, 5rem);
+  padding: clamp(3.5rem, 7.5vw, 5.5rem) 0;
 }
 
 .page-hero--split__grid {
@@ -82,34 +93,33 @@ body[data-page="about"] .page-hero {
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(2.5rem, 5vw, 4.5rem);
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
 
 .page-hero--split__main {
   animation: pageHeroFadeUp 0.85s var(--ease-out) both;
   min-width: 0;
-  max-width: 46rem;
+  max-width: 40rem;
 }
 
 .page-hero--split__label {
   font-family: var(--font-accent);
-  font-size: clamp(1.875rem, 3.2vw, 2.5rem);
+  font-size: clamp(2.1rem, 3.6vw, 2.75rem);
   color: var(--gold-light);
   line-height: 1;
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.02em;
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.03em;
 }
 
 .page-hero--split__label::after {
   content: '';
   display: block;
-  width: 64px;
-  height: 4px;
+  width: 42px;
+  height: 2px;
   margin-top: 0.75rem;
-  background: var(--gold-gradient);
+  background: var(--gold);
   border-radius: 999px;
-  box-shadow: 0 0 18px rgba(184, 149, 90, 0.45);
 }
 
 .page-hero--split__main .page__title {
@@ -118,35 +128,30 @@ body[data-page="about"] .page-hero {
   gap: 0.2rem;
   margin-top: 0;
   font-family: var(--font-heading);
-  font-size: clamp(1.35rem, 2.4vw, 1.875rem);
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
   font-weight: 700;
-  line-height: 1.28;
-  letter-spacing: -0.015em;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
   max-width: 34ch;
   color: #ffffff;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
 }
 
 .page-hero--split__main .page__title::after {
   display: none;
 }
 
-.page-hero--split__title-line {
-  display: block;
-  white-space: nowrap;
-}
-
-.page-hero--split__title-line--soft {
-  font-size: 0.78em;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.82);
-}
-
+.page-hero--split__title-line,
 .page-hero--split__title-accent {
   display: block;
   white-space: nowrap;
   color: #ffffff;
+}
+
+.page-hero--split__title-line--soft {
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.84);
 }
 
 body[data-page="contact"] .page-hero--split__main .page__title {
@@ -154,12 +159,12 @@ body[data-page="contact"] .page-hero--split__main .page__title {
 }
 
 .page-hero--split__main .page__lead {
-  margin-top: 1.35rem;
+  margin-top: 1.15rem;
   margin-inline: 0;
-  max-width: 40rem;
-  font-size: 1.0625rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.88);
+  max-width: 38rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.86);
   text-wrap: pretty;
 }
 
@@ -168,7 +173,7 @@ body[data-page="contact"] .page-hero--split__main .page__title {
   border-left: 2px solid rgba(184, 149, 90, 0.55);
   text-align: center;
   min-width: 7.5rem;
-  animation: pageHeroFadeUp 0.85s var(--ease-out) 0.15s both;
+  animation: pageHeroStatIn 0.9s var(--ease-out) 0.18s both;
 }
 
 .page-hero--split__stat {
@@ -183,8 +188,8 @@ body[data-page="contact"] .page-hero--split__main .page__title {
 
 .page-hero--split__stat-label {
   display: block;
-  margin-top: 0.5rem;
-  font-size: 0.625rem;
+  margin-top: 0.55rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -196,6 +201,7 @@ body[data-page="contact"] .page-hero--split__main .page__title {
   .page-hero--split__grid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
+    align-items: start;
   }
 
   .page-hero--split__aside {
@@ -217,7 +223,7 @@ body[data-page="contact"] .page-hero--split__main .page__title {
 
   .page-hero--split__main .page__title {
     max-width: none;
-    font-size: clamp(1.2rem, 4.2vw, 1.5rem);
+    font-size: clamp(1.28rem, 4.5vw, 1.6rem);
   }
 
   .page-hero--split__title-line,
@@ -235,7 +241,7 @@ body[data-page="contact"] .page-hero--split__main .page__title {
   }
 
   .page-hero--split {
-    padding: 2.75rem 0 2.5rem;
+    padding: 2.6rem 0 2.35rem;
   }
 }
 
@@ -484,18 +490,18 @@ body[data-page="about"] .about-values {
 body[data-page="about"] .about-values__header .section-label,
 body[data-page="about"] .about-commitment__content .section-label {
   font-family: var(--font-accent);
-  font-size: clamp(1.85rem, 2.8vw, 2.25rem);
+  font-size: var(--fs-label);
 }
 
 body[data-page="about"] .about-subtitle {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  font-size: var(--fs-title);
   font-weight: 700;
-  line-height: 1.28;
-  letter-spacing: -0.015em;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.018em;
   text-transform: none;
   text-wrap: balance;
-  margin-top: 0.65rem;
+  margin-top: 0.55rem;
   color: var(--navy);
 }
 
@@ -575,15 +581,15 @@ body[data-page="blog"] .about-values {
 
 .about-value-card__title {
   font-family: var(--font-heading);
-  font-size: 1.125rem;
+  font-size: var(--fs-card-title);
   font-weight: 700;
   color: var(--navy);
   margin-bottom: 0.625rem;
 }
 
 .about-value-card p {
-  font-size: 0.9375rem;
-  line-height: 1.65;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   color: var(--text-secondary);
 }
 
@@ -633,7 +639,7 @@ body[data-page="blog"] .about-values {
 
 .about-team-card__name {
   font-family: var(--font-heading);
-  font-size: 1.125rem;
+  font-size: var(--fs-card-title);
   font-weight: 700;
   color: var(--navy);
 }
@@ -827,7 +833,7 @@ body[data-page="about"] .about-commitment {
 
 .page-service-card__title {
   font-family: var(--font-heading);
-  font-size: 1.125rem;
+  font-size: var(--fs-card-title);
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--navy);
@@ -1005,7 +1011,7 @@ body[data-page="about"] .about-commitment {
 
 .page-blog-card__title {
   font-family: var(--font-heading);
-  font-size: 1.0625rem;
+  font-size: var(--fs-card-title);
   font-weight: 700;
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
