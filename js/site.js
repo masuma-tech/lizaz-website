@@ -48,7 +48,7 @@
     <div class="container topbar__inner">
       <div class="topbar__contact">
         <a href="tel:+1234567890">+1 234 567 890</a>
-        <a href="mailto:support@lizaz.com">support@lizaz.com</a>
+        <a href="mailto:Info@lizaz.ae">Info@lizaz.ae</a>
       </div>
     </div>
   </div>`;
