@@ -23,15 +23,22 @@ body[data-page="about"] .section-label,
 body[data-page="services"] .section-label,
 body[data-page="blog"] .section-label,
 body[data-page="contact"] .section-label {
-  font-size: clamp(1.875rem, 2.75vw, 2.125rem);
+  font-size: clamp(1.85rem, 2.8vw, 2.25rem);
 }
 
 body[data-page="about"] .section-label::after,
 body[data-page="services"] .section-label::after,
 body[data-page="blog"] .section-label::after,
 body[data-page="contact"] .section-label::after {
-  width: 56px;
-  margin-top: 0.625rem;
+  width: 48px;
+  margin-top: 0.5rem;
+}
+
+body[data-page="about"] .section-title,
+body[data-page="services"] .section-title,
+body[data-page="blog"] .section-title,
+body[data-page="contact"] .section-title {
+  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
 }
 
 /* Inner page hero */
@@ -477,18 +484,18 @@ body[data-page="about"] .about-values {
 body[data-page="about"] .about-values__header .section-label,
 body[data-page="about"] .about-commitment__content .section-label {
   font-family: var(--font-accent);
-  font-size: clamp(2.5rem, 4vw, 3.25rem);
+  font-size: clamp(1.85rem, 2.8vw, 2.25rem);
 }
 
 body[data-page="about"] .about-subtitle {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
   text-transform: none;
   text-wrap: balance;
-  margin-top: 0.625rem;
+  margin-top: 0.65rem;
   color: var(--navy);
 }
 
