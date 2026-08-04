@@ -453,7 +453,7 @@ main {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: clamp(2rem, 4vw, 3rem);
-  padding-block: clamp(3rem, 5vw, 4rem);
+  padding-block: clamp(2rem, 4vw, 3rem);
 }
 
 .footer__brand .logo__text {
@@ -586,7 +586,7 @@ main {
 }
 
 .section-header {
-  margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .section-lead {

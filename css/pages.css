@@ -1,5 +1,5 @@
 .page {
-  padding: clamp(3.25rem, 7vw, 5.75rem) 0;
+  padding: clamp(2.25rem, 5vw, 3.75rem) 0;
   background: var(--bg);
   scroll-margin-top: calc(var(--header-h) + var(--topbar-h) + 0.5rem);
 }
@@ -44,7 +44,7 @@ body[data-page="contact"] .section-title {
 /* Inner page hero */
 .page-hero {
   position: relative;
-  padding: clamp(3rem, 7vw, 5rem) 0 clamp(2.5rem, 5vw, 3.75rem);
+  padding: clamp(2.25rem, 5vw, 3.5rem) 0 clamp(1.75rem, 4vw, 2.75rem);
   background:
     linear-gradient(rgba(28, 39, 79, 0.92), rgba(28, 39, 79, 0.92)),
     url('../attached_assets/images/hero.png') center / cover no-repeat;
@@ -85,7 +85,7 @@ body[data-page="about"] .page-hero {
 /* Split hero — label, title + open stat (About, Services, Blog, Contact) */
 .page-hero--split {
   text-align: left;
-  padding: clamp(3.5rem, 7.5vw, 5.5rem) 0;
+  padding: clamp(2.5rem, 5.5vw, 3.75rem) 0;
 }
 
 .page-hero--split__grid {
@@ -241,7 +241,7 @@ body[data-page="contact"] .page-hero--split__main .page__title {
   }
 
   .page-hero--split {
-    padding: 2.6rem 0 2.35rem;
+    padding: 1.85rem 0 1.65rem;
   }
 }
 
@@ -430,7 +430,7 @@ body[data-page="about"] .about-media__img {
 }
 
 .about-stats {
-  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
   background: var(--surface-muted);
   border-block: 1px solid var(--border);
 }
@@ -688,7 +688,7 @@ body[data-page="about"] .about-commitment {
 }
 
 .about-cta {
-  padding: clamp(2.5rem, 5vw, 3.75rem) 0;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) 0;
   background:
     radial-gradient(ellipse 50% 50% at 0% 100%, rgba(184, 149, 90, 0.14), transparent),
     var(--navy-gradient);
@@ -1130,7 +1130,7 @@ body[data-page="about"] .about-commitment {
 
 /* Blog article detail */
 .page-blog-article {
-  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  padding-block: clamp(1.75rem, 4vw, 3rem);
   background:
     radial-gradient(circle at top right, rgba(184, 149, 90, 0.08), transparent 40%),
     var(--surface);
@@ -1371,11 +1371,11 @@ body[data-page="about"] .about-commitment {
 
 @media (max-width: 640px) {
   .page {
-    padding: clamp(2rem, 6vw, 3rem) 0;
+    padding: clamp(1.5rem, 5vw, 2.25rem) 0;
   }
 
   .page-hero {
-    padding: 2rem 0 1.75rem;
+    padding: 1.5rem 0 1.35rem;
   }
 
   .about-stats__grid,
@@ -1407,7 +1407,7 @@ body[data-page="about"] .about-commitment {
   }
 
   .about-cta {
-    padding: 2.5rem 0;
+    padding: 1.75rem 0;
   }
 
   .about-cta__actions {
