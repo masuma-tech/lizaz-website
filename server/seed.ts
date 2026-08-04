@@ -25,20 +25,31 @@ type SeedPost = {
 };
 
 async function seedAdmin() {
+  const username = (process.env.ADMIN_USERNAME || "admin").trim();
+
   const existing = await db
-    .select()
+    .select({ id: users.id })
     .from(users)
-    .where(eq(users.username, "admin"))
+    .where(eq(users.username, username))
     .limit(1);
 
+  // Password lives in Supabase (users.password hash). Never overwrite from .env.
   if (existing.length > 0) {
-    console.log("✓ Admin user already exists — skipping");
+    console.log(`✓ Admin user already exists in database (username: ${username})`);
     return;
   }
 
-  const adminPassword = await hashPassword("admin123");
+  // First-time bootstrap only — optional env used once, then remove it from .env
+  const plainPassword = process.env.ADMIN_PASSWORD?.trim();
+  if (!plainPassword) {
+    throw new Error(
+      "No admin user in Supabase yet. Set ADMIN_PASSWORD in .env once to create it, then remove ADMIN_PASSWORD from .env."
+    );
+  }
+
+  const adminPassword = await hashPassword(plainPassword);
   await db.insert(users).values({
-    username: "admin",
+    username,
     password: adminPassword,
     email: "Info@lizaz.ae",
     name: "Lizaz Admin",
@@ -47,7 +58,8 @@ async function seedAdmin() {
     canViewLeads: true,
   });
 
-  console.log("✓ Admin user created (username: admin, password: admin123)");
+  console.log(`✓ Admin user created in Supabase (username: ${username})`);
+  console.log("  Remove ADMIN_PASSWORD from .env — login uses the DB hash only.");
 }
 
 async function seedBlogs() {

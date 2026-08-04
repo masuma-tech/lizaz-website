@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Page Not Found | Lizaz</title>
+  <link rel="icon" href="/attached_assets/logo/lizaz-favicon.png" type="image/png" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    .not-found {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1.25rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% -10%, rgba(184, 149, 90, 0.1), transparent 55%),
+        radial-gradient(ellipse 70% 45% at 100% 100%, rgba(28, 39, 79, 0.06), transparent 50%),
+        var(--bg, #f6f9fd);
+    }
+
+    .not-found__card {
+      width: min(100%, 520px);
+      background: #fff;
+      border: 1px solid var(--border, #d8dee9);
+      border-radius: 20px;
+      padding: 2.5rem 1.75rem;
+      box-shadow: 0 10px 36px rgba(14, 18, 40, 0.1);
+    }
+
+    .not-found__code {
+      font-family: var(--font-heading, Georgia, serif);
+      font-size: clamp(3.5rem, 10vw, 5rem);
+      line-height: 1;
+      color: var(--navy, #1c274f);
+      margin: 0 0 0.5rem;
+    }
+
+    .not-found__card h1 {
+      font-family: var(--font-heading, Georgia, serif);
+      font-size: 1.5rem;
+      margin: 0 0 0.65rem;
+      color: var(--navy, #1c274f);
+    }
+
+    .not-found__card p {
+      margin: 0 0 1.5rem;
+      color: var(--text-secondary, #445275);
+      font-size: 0.95rem;
+    }
+
+    .not-found__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      justify-content: center;
+    }
+
+    .not-found__actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.15rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+
+    .not-found__actions a:first-child {
+      background: linear-gradient(135deg, #e2c99a 0%, #b8955a 48%, #8f6f3a 100%);
+      color: #fff;
+    }
+
+    .not-found__actions a:last-child {
+      border: 1px solid var(--border, #d8dee9);
+      color: var(--navy, #1c274f);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <main class="not-found">
+    <div class="not-found__card">
+      <p class="not-found__code">404</p>
+      <h1>Page not found</h1>
+      <p>The page you’re looking for doesn’t exist.</p>
+      <div class="not-found__actions">
+        <a href="/">Back to home</a>
+        <a href="/contact">Contact us</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
