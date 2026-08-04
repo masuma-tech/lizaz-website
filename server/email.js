@@ -1,20 +1,25 @@
+import "./envSetup.ts";
 import { Resend } from "resend";
-
-const resendApiKey = process.env.RESEND_API_KEY;
-const notificationEmail =
-  process.env.RESEND_NOTIFICATION_EMAIL ?? "Info@lizaz.ae";
-const fromEmail =
-  process.env.RESEND_FROM_EMAIL ?? "Lizaz <onboarding@resend.dev>";
 
 let resend = null;
 
+function getResendConfig() {
+  return {
+    apiKey: process.env.RESEND_API_KEY,
+    notificationEmail: process.env.RESEND_NOTIFICATION_EMAIL ?? "Info@lizaz.ae",
+    fromEmail: process.env.RESEND_FROM_EMAIL ?? "Lizaz <onboarding@resend.dev>",
+  };
+}
+
 function getResendClient() {
-  if (!resendApiKey) {
+  const { apiKey } = getResendConfig();
+
+  if (!apiKey) {
     throw new Error("RESEND_API_KEY is not configured");
   }
 
   if (!resend) {
-    resend = new Resend(resendApiKey);
+    resend = new Resend(apiKey);
   }
 
   return resend;
@@ -69,6 +74,7 @@ function buildContactEmailHtml(contact) {
 
 export async function sendContactNotificationEmail(contact) {
   const client = getResendClient();
+  const { notificationEmail, fromEmail } = getResendConfig();
   const fullName = `${contact.firstName} ${contact.lastName}`.trim();
   const subject = `New Contact Inquiry — ${fullName || contact.email}`;
 
