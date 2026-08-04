@@ -845,11 +845,11 @@ body[data-page="about"] .about-commitment {
   color: var(--text-secondary);
 }
 
-/* Blog featured article — vertical image, height matches content */
+/* Blog featured article — landscape banner so baked-in titles stay visible */
 .blog-featured .about-intro__grid {
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(280px, 42%) 1fr;
   gap: clamp(2.5rem, 5vw, 4rem);
-  align-items: stretch;
+  align-items: center;
 }
 
 .blog-featured .about-intro__content {
@@ -858,11 +858,14 @@ body[data-page="about"] .about-commitment {
 
 .blog-featured .about-intro__media {
   position: relative;
-  height: 100%;
-  width: auto;
-  aspect-ratio: 3 / 4;
-  align-self: stretch;
-  min-height: 280px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  align-self: center;
+  min-height: 0;
+  background: #f3f3f3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .blog-featured__img {
@@ -871,7 +874,7 @@ body[data-page="about"] .about-commitment {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -888,11 +891,11 @@ body[data-page="about"] .about-commitment {
   }
 
   .blog-featured .about-intro__media {
-    width: min(240px, 62%);
+    width: min(520px, 100%);
     height: auto;
     min-height: 0;
     margin-inline: auto;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 16 / 9;
   }
 }
 
@@ -1060,13 +1063,11 @@ body[data-page="about"] .about-commitment {
 
 .page-blog-card > img {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  transition: transform 0.5s var(--ease-out);
-}
-
-.page-blog-card:hover > img {
-  transform: scale(1.05);
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  object-position: center;
+  background: #f3f3f3;
+  display: block;
 }
 
 .page-blog-card__body {
@@ -1194,8 +1195,11 @@ body[data-page="about"] .about-commitment {
 .page-blog-article__image {
   display: block;
   width: 100%;
-  max-height: 420px;
-  object-fit: cover;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  background: #f3f3f3;
   border-radius: var(--radius-md);
   margin-bottom: 2rem;
   box-shadow: var(--shadow-md);
@@ -1420,7 +1424,6 @@ body[data-page="about"] .about-commitment {
   }
 
   body[data-page="about"] .about-intro__media,
-  .blog-featured .about-intro__media,
   .services-intro .about-intro__media {
     width: min(220px, 70%);
   }
