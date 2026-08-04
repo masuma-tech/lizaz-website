@@ -421,3 +421,164 @@ function initContactForms() {
 }
 
 initContactForms();
+
+function initHomeBlogSlider() {
+  const track = document.getElementById('home-blog-track');
+  const slider = document.getElementById('home-blog-slider');
+  if (!track || !slider) return;
+
+  const AUTO_MS = 4500;
+  const VISIBLE = () => {
+    if (window.innerWidth <= 720) return 1;
+    if (window.innerWidth <= 960) return 2;
+    if (window.innerWidth <= 1200) return 3;
+    return 4;
+  };
+
+  let posts = [];
+  let index = 0;
+  let timer = null;
+  let gapPx = 0;
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+  }
+
+  function encodeAssetUrl(value) {
+    return String(value ?? '')
+      .split('/')
+      .map((part) => encodeURIComponent(part))
+      .join('/');
+  }
+
+  function formatDate(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value || '';
+    return date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  }
+
+  function cardHtml(post) {
+    const imageSrc = post.image?.startsWith('http')
+      ? post.image
+      : `/${encodeAssetUrl(post.image)}`;
+    const excerpt = String(post.excerpt || '').slice(0, 90);
+
+    return `
+      <article class="home-blog-slider__slide">
+        <a class="blog-card" href="/blog?slug=${encodeURIComponent(post.slug)}">
+          <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(post.title)}" width="300" height="140" loading="lazy">
+          <div class="blog-card__body">
+            <span class="blog-card__tag">${escapeHtml(post.category || 'General')}</span>
+            <h3 class="blog-card__title">${escapeHtml(post.title)}</h3>
+            <p>${escapeHtml(excerpt)}${String(post.excerpt || '').length > 90 ? '…' : ''}</p>
+            <div class="blog-card__meta">
+              <time datetime="${escapeHtml(post.date || '')}">${escapeHtml(formatDate(post.date))}</time>
+            </div>
+          </div>
+        </a>
+      </article>`;
+  }
+
+  function measureGap() {
+    const styles = getComputedStyle(track);
+    gapPx = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
+  }
+
+  function slideWidth() {
+    const slide = track.querySelector('.home-blog-slider__slide');
+    return slide ? slide.getBoundingClientRect().width : 0;
+  }
+
+  function applyTransform(instant = false) {
+    const width = slideWidth();
+    if (!width) return;
+    track.classList.toggle('is-instant', instant);
+    track.style.transform = `translate3d(-${index * (width + gapPx)}px, 0, 0)`;
+    if (instant) {
+      // Force reflow then re-enable transition
+      void track.offsetWidth;
+      track.classList.remove('is-instant');
+    }
+  }
+
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function start() {
+    stop();
+    // Need at least 2 posts to make sliding meaningful
+    if (posts.length < 2) return;
+    timer = setInterval(() => {
+      index += 1;
+      applyTransform(false);
+
+      // Loop seamlessly using cloned slides at the end
+      if (index >= posts.length) {
+        window.setTimeout(() => {
+          index = 0;
+          applyTransform(true);
+        }, 1450);
+      }
+    }, AUTO_MS);
+  }
+
+  function render() {
+    if (!posts.length) {
+      track.innerHTML = '<p class="home-blog-slider__empty">No articles published yet. Check back soon.</p>';
+      return;
+    }
+
+    // Clone a full set so the 3 visible cards can rotate slowly in a loop
+    const loopClones = posts.length >= 2 ? posts : [];
+    track.innerHTML = [...posts, ...loopClones].map(cardHtml).join('');
+    index = 0;
+    measureGap();
+    applyTransform(true);
+    start();
+  }
+
+  async function load() {
+    try {
+      const response = await fetch('/api/blogs');
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'Failed to load blogs');
+
+      // Latest 4 from the blog page feed
+      posts = (data.posts || []).slice(0, 4);
+      render();
+    } catch (error) {
+      console.error(error);
+      track.innerHTML =
+        '<p class="home-blog-slider__empty">Unable to load articles right now. <a href="/blog">Visit the blog</a>.</p>';
+    }
+  }
+
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+  window.addEventListener(
+    'resize',
+    () => {
+      measureGap();
+      applyTransform(true);
+      start();
+    },
+    { passive: true }
+  );
+
+  load();
+}
+
+initHomeBlogSlider();

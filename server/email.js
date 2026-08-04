@@ -7,7 +7,7 @@ function getResendConfig() {
   return {
     apiKey: process.env.RESEND_API_KEY,
     notificationEmail: process.env.RESEND_NOTIFICATION_EMAIL ?? "Info@lizaz.ae",
-    fromEmail: process.env.RESEND_FROM_EMAIL ?? "Lizaz <onboarding@resend.dev>",
+    fromEmail: process.env.RESEND_FROM_EMAIL ?? "Lizaz <noreply@lizaz.ae>",
   };
 }
 
