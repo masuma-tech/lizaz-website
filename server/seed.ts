@@ -65,7 +65,7 @@ async function seedAdmin() {
 async function seedBlogs() {
   if (!fs.existsSync(postsJsonPath)) {
     throw new Error(
-      `Missing ${postsJsonPath}. Run: python scripts/extract_blogs.py`
+      `Missing ${postsJsonPath}. Restore scripts/blog_posts.json before seeding.`
     );
   }
 

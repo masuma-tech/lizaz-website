@@ -4,3 +4,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# Source docs — keep only blog images on the server
+Blog/**/*.pdf
+Blog/**/*.docx
