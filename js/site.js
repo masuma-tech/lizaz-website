@@ -47,7 +47,6 @@
     return `<div class="topbar">
     <div class="container topbar__inner">
       <div class="topbar__contact">
-        <a href="tel:+1234567890">+1 234 567 890</a>
         <a href="mailto:Info@lizaz.ae">Info@lizaz.ae</a>
       </div>
     </div>
@@ -105,7 +104,6 @@
       <div>
         <h3 class="footer__heading">Contact</h3>
         <ul class="footer__links">
-          <li><a href="tel:+1234567890">+1 234 567 890</a></li>
           <li><a href="mailto:Info@lizaz.ae">Info@lizaz.ae</a></li>
           <li><a href="/contact">Get in Touch</a></li>
           <li><a href="/contact">Book Appointment</a></li>
