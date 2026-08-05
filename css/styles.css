@@ -575,21 +575,6 @@ main {
   text-wrap: balance;
 }
 
-.section-title::after {
-  content: '';
-  display: block;
-  width: 44px;
-  height: 2px;
-  margin-top: 0.85rem;
-  background: var(--gold-gradient);
-  border-radius: 999px;
-}
-
-.section-header--center .section-title::after {
-  margin-inline: auto;
-  width: 40px;
-}
-
 .section-header {
   margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
 }
