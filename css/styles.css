@@ -7,7 +7,7 @@
   --text: #1c274f;
   --text-secondary: #445275;
   --border: #d8dee9;
-  --container: 1200px;
+  --container: 1360px;
   --header-h: 80px;
   --topbar-h: 44px;
   --radius-sm: 10px;
@@ -111,7 +111,7 @@ button {
 }
 
 .container {
-  width: min(100% - clamp(1.75rem, 5vw, 3rem), var(--container));
+  width: min(100% - clamp(2.25rem, 5.5vw, 4rem), var(--container));
   margin-inline: auto;
 }
 
