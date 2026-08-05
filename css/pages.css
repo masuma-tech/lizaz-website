@@ -748,6 +748,24 @@ body[data-page="about"] .about-commitment {
   gap: 1.25rem;
 }
 
+@media (min-width: 1025px) {
+  .page-services__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .page-services__grid .page-service-card {
+    grid-column: span 2;
+  }
+
+  .page-services__grid .page-service-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .page-services__grid .page-service-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
 .page-service-card {
   display: flex;
   flex-direction: column;
