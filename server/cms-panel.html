@@ -21,10 +21,14 @@
       <h1>Admin Panel</h1>
       <p>Sign in to manage blog posts and contact inquiries</p>
       <form id="login-form" class="admin-login__form">
-        <label for="login-username">Username</label>
-        <input id="login-username" name="username" type="text" autocomplete="username" required />
-        <label for="login-password">Password</label>
-        <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+        <div class="admin-field">
+          <label for="login-username">Username</label>
+          <input id="login-username" name="username" type="text" autocomplete="username" required />
+        </div>
+        <div class="admin-field">
+          <label for="login-password">Password</label>
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+        </div>
         <p id="login-error" class="admin-form-error" hidden></p>
         <button type="submit" id="login-submit" class="admin-btn admin-btn--primary admin-btn--block">
           Sign In
