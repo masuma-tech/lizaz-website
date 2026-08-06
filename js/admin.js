@@ -352,7 +352,7 @@ function openCreateDialog() {
   state.editingPost = null;
   state.slugTouched = false;
   els.dialogTitle.textContent = "New Blog Post";
-  els.dialogSubtitle.textContent = "Fill in the details for your article";
+  els.dialogSubtitle.textContent = "Add the details for this article";
   els.blogForm.reset();
   els.blogId.value = "";
   els.blogAuthor.value = "Lizaz Team";
@@ -366,7 +366,7 @@ function openEditDialog(post) {
   state.editingPost = post;
   state.slugTouched = true;
   els.dialogTitle.textContent = "Edit Blog Post";
-  els.dialogSubtitle.textContent = "Update the article details";
+  els.dialogSubtitle.textContent = "Update the details for this article";
   els.blogId.value = post.id;
   els.blogTitle.value = post.title || "";
   els.blogSlug.value = post.slug || "";
