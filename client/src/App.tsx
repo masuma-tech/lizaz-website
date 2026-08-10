@@ -26,39 +26,41 @@ function Router({ config }: { config: SiteConfig | null }) {
 
   return (
     <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/services" component={Services} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/blog/:slug" component={BlogPost} />
-      <Route component={NotFound} />
+      <Route path="/about">{() => <About />}</Route>
+      <Route path="/services">{() => <Services />}</Route>
+      <Route path="/contact">{() => <Contact />}</Route>
+      <Route path="/blog/:slug">{() => <BlogPost />}</Route>
+      <Route path="/blog">{() => <Blog />}</Route>
+      <Route path="/">{() => <Home />}</Route>
+      <Route>{() => <NotFound />}</Route>
     </Switch>
   );
 }
 
 export default function App() {
   const [config, setConfig] = useState<SiteConfig | null>(null);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     fetch("/api/config")
-      .then((res) => (res.ok ? res.json() : null))
+      .then(async (res) => {
+        const type = res.headers.get("content-type") || "";
+        if (!res.ok || !type.includes("application/json")) return null;
+        return res.json();
+      })
       .then((data) => {
         if (data?.adminPath && data?.adminApiBase) {
           setConfig(data);
         }
       })
       .catch(() => {
-        // Public pages still work without config
-      })
-      .finally(() => setReady(true));
+        // Static Apache hosting has no API — public pages still render
+      });
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ScrollToTop />
-      {ready ? <Router config={config} /> : null}
+      <Router config={config} />
     </QueryClientProvider>
   );
 }
