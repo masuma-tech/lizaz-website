@@ -47,7 +47,7 @@ body[data-page="contact"] .section-title {
   padding: clamp(2.25rem, 5vw, 3.5rem) 0 clamp(1.75rem, 4vw, 2.75rem);
   background:
     linear-gradient(rgba(28, 39, 79, 0.92), rgba(28, 39, 79, 0.92)),
-    url('../attached_assets/images/hero.png') center / cover no-repeat;
+    url('/attached_assets/images/hero.png') center / cover no-repeat;
   color: #ffffff;
   text-align: center;
   overflow: hidden;
@@ -57,7 +57,7 @@ body[data-page="contact"] .section-title {
 body[data-page="about"] .page-hero {
   background:
     linear-gradient(rgba(28, 39, 79, 0.92), rgba(28, 39, 79, 0.92)),
-    url('../attached_assets/images/uae.jpg') center / cover no-repeat;
+    url('/attached_assets/images/uae.jpg') center / cover no-repeat;
 }
 
 @keyframes pageHeroFadeUp {
@@ -249,19 +249,19 @@ body[data-page="contact"] .page-hero--split__main .page__title {
 body[data-page="services"] .page-hero {
   background:
     linear-gradient(rgba(28, 39, 79, 0.92), rgba(28, 39, 79, 0.92)),
-    url('../attached_assets/images/doc_clearance.jpg') center / cover no-repeat;
+    url('/attached_assets/images/doc_clearance.jpg') center / cover no-repeat;
 }
 
 body[data-page="blog"] .page-hero {
   background:
     linear-gradient(rgba(28, 39, 79, 0.92), rgba(28, 39, 79, 0.92)),
-    url('../attached_assets/images/doc1.jpg') center / cover no-repeat;
+    url('/attached_assets/images/doc1.jpg') center / cover no-repeat;
 }
 
 body[data-page="contact"] .page-hero {
   background:
     linear-gradient(rgba(28, 39, 79, 0.92), rgba(28, 39, 79, 0.92)),
-    url('../attached_assets/images/visa_stamp.jpg') center / cover no-repeat;
+    url('/attached_assets/images/visa_stamp.jpg') center / cover no-repeat;
 }
 
 .page-hero::after {

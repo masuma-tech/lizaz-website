@@ -55,7 +55,7 @@ function parseCookies(req: IncomingMessage): Record<string, string> {
 
 function pruneExpiredSessions() {
   const now = Date.now();
-  for (const [token, session] of sessions) {
+  for (const [token, session] of Array.from(sessions.entries())) {
     if (session.expiresAt <= now) sessions.delete(token);
   }
 }

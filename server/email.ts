@@ -1,7 +1,17 @@
-import "./envSetup.ts";
+import "./envSetup";
 import { Resend } from "resend";
 
-let resend = null;
+type ContactEmailPayload = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  service?: string;
+  subject?: string;
+  message: string;
+};
+
+let resend: Resend | null = null;
 
 function getResendConfig() {
   return {
@@ -25,7 +35,7 @@ function getResendClient() {
   return resend;
 }
 
-function escapeHtml(value) {
+function escapeHtml(value: unknown) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -34,9 +44,9 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function buildContactEmailHtml(contact) {
+function buildContactEmailHtml(contact: ContactEmailPayload) {
   const fullName = `${contact.firstName} ${contact.lastName}`.trim();
-  const rows = [
+  const rows: [string, string][] = [
     ["Name", fullName],
     ["Email", contact.email],
     ["Phone", contact.phone || "Not provided"],
@@ -72,7 +82,7 @@ function buildContactEmailHtml(contact) {
   `;
 }
 
-export async function sendContactNotificationEmail(contact) {
+export async function sendContactNotificationEmail(contact: ContactEmailPayload) {
   const client = getResendClient();
   const { notificationEmail, fromEmail } = getResendConfig();
   const fullName = `${contact.firstName} ${contact.lastName}`.trim();

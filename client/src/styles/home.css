@@ -100,7 +100,7 @@
   height: calc(100% + 140px);
   background:
     linear-gradient(118deg, rgba(16, 24, 52, 0.96) 0%, rgba(20, 30, 62, 0.95) 45%, rgba(28, 39, 79, 0.94) 100%),
-    url('../attached_assets/images/hero.png') center 4.5rem / cover no-repeat;
+    url('/attached_assets/images/hero.png') center 4.5rem / cover no-repeat;
   transform: scale(1.02);
   transform-origin: center top;
   will-change: transform;
@@ -815,7 +815,7 @@
 .home-faq {
   background:
     linear-gradient(rgba(28, 39, 79, 0.93), rgba(28, 39, 79, 0.93)),
-    url('../attached_assets/images/doc1.jpg') center / cover no-repeat;
+    url('/attached_assets/images/doc1.jpg') center / cover no-repeat;
   color: #ffffff;
 }
 
@@ -1084,7 +1084,7 @@
 .home-quote {
   background:
     linear-gradient(rgba(28, 39, 79, 0.93), rgba(28, 39, 79, 0.93)),
-    url('../attached_assets/images/hero.png') center / cover no-repeat;
+    url('/attached_assets/images/hero.png') center / cover no-repeat;
   color: #ffffff;
 }
 
@@ -1264,7 +1264,7 @@
 .home-contact {
   background:
     linear-gradient(rgba(28, 39, 79, 0.93), rgba(28, 39, 79, 0.93)),
-    url('../attached_assets/images/visa_stamp.jpg') center / cover no-repeat;
+    url('/attached_assets/images/visa_stamp.jpg') center / cover no-repeat;
   color: #ffffff;
 }
 
