@@ -1,5 +1,5 @@
 .page {
-  padding: clamp(2.25rem, 5vw, 3.75rem) 0;
+  padding: var(--space-section) 0;
   background: var(--bg);
   scroll-margin-top: calc(var(--header-h) + var(--topbar-h) + 0.5rem);
 }

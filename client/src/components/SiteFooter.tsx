@@ -10,8 +10,8 @@ export function SiteFooter() {
               src="/attached_assets/logo/Lizaz%20Logo%20Final-03.png"
               alt="Lizaz"
               className="logo__img"
-              width={300}
-              height={64}
+              width={120}
+              height={30}
               decoding="async"
             />
             <span className="logo__text">Lizaz</span>
@@ -21,7 +21,8 @@ export function SiteFooter() {
             the UAE.
           </p>
         </div>
-        <div>
+
+        <nav className="footer__col" aria-label="Quick links">
           <h3 className="footer__heading">Quick Links</h3>
           <ul className="footer__links">
             <li>
@@ -36,9 +37,13 @@ export function SiteFooter() {
             <li>
               <Link href="/blog">Blog</Link>
             </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
           </ul>
-        </div>
-        <div>
+        </nav>
+
+        <nav className="footer__col" aria-label="Our services">
           <h3 className="footer__heading">Our Services</h3>
           <ul className="footer__links">
             <li>
@@ -57,8 +62,9 @@ export function SiteFooter() {
               <Link href="/services">Corporate Support</Link>
             </li>
           </ul>
-        </div>
-        <div>
+        </nav>
+
+        <nav className="footer__col" aria-label="Contact">
           <h3 className="footer__heading">Contact</h3>
           <ul className="footer__links">
             <li>
@@ -71,8 +77,9 @@ export function SiteFooter() {
               <Link href="/contact">Book Appointment</Link>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
+
       <div className="footer__bottom">
         <div className="container footer__inner">
           <p className="footer__copy">&copy; {new Date().getFullYear()} Lizaz. All rights reserved.</p>
