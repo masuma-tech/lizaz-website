@@ -12,35 +12,44 @@ import BlogPost from "@/pages/BlogPost";
 import NotFound from "@/pages/NotFound";
 import Admin from "@/pages/Admin";
 
+/** Must match server/adminPath.ts default when ADMIN_PATH is unset. */
+const DEFAULT_ADMIN_PATH = "/lizaz-admin-portal-9k2m7xq";
+const DEFAULT_ADMIN_API = "/api/lizaz-admin-portal-9k2m7xq";
+
 type SiteConfig = {
   adminPath: string;
   adminApiBase: string;
 };
 
-function Router({ config }: { config: SiteConfig | null }) {
+function Router({ config }: { config: SiteConfig }) {
   const [location] = useLocation();
 
-  if (config && (location === config.adminPath || location.startsWith(`${config.adminPath}/`))) {
+  if (location === config.adminPath || location.startsWith(`${config.adminPath}/`)) {
     return <Admin apiBase={config.adminApiBase} />;
   }
 
+  // Same pattern as RealEstate — public pages work with no Node/API
   return (
     <Switch>
-      <Route path="/about">{() => <About />}</Route>
-      <Route path="/services">{() => <Services />}</Route>
-      <Route path="/contact">{() => <Contact />}</Route>
-      <Route path="/blog/:slug">{() => <BlogPost />}</Route>
-      <Route path="/blog">{() => <Blog />}</Route>
-      <Route path="/">{() => <Home />}</Route>
-      <Route>{() => <NotFound />}</Route>
+      <Route path="/about" component={About} />
+      <Route path="/services" component={Services} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/" component={Home} />
+      <Route component={NotFound} />
     </Switch>
   );
 }
 
 export default function App() {
-  const [config, setConfig] = useState<SiteConfig | null>(null);
+  const [config, setConfig] = useState<SiteConfig>({
+    adminPath: DEFAULT_ADMIN_PATH,
+    adminApiBase: DEFAULT_ADMIN_API,
+  });
 
   useEffect(() => {
+    // Optional: override from Node when available (Apache static hosting ignores this)
     fetch("/api/config")
       .then(async (res) => {
         const type = res.headers.get("content-type") || "";
@@ -49,11 +58,14 @@ export default function App() {
       })
       .then((data) => {
         if (data?.adminPath && data?.adminApiBase) {
-          setConfig(data);
+          setConfig({
+            adminPath: data.adminPath,
+            adminApiBase: data.adminApiBase,
+          });
         }
       })
       .catch(() => {
-        // Static Apache hosting has no API — public pages still render
+        /* keep defaults — pages still work without Node */
       });
   }, []);
 
