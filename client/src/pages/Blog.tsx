@@ -29,7 +29,7 @@ export default function Blog() {
       <header className="page-hero page-hero--split" aria-labelledby="blog-page-title">
         <div className="container page-hero--split__grid">
           <div className="page-hero--split__main">
-            <p className="page-hero--split__label">Our Blog</p>
+            <p className="section-label">Our Blog</p>
             <h1 id="blog-page-title" className="page__title">
               <span className="page-hero--split__title-line">UAE Visa Updates</span>
               <span className="page-hero--split__title-accent">Guides, Tips &amp; Requirements</span>

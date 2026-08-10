@@ -171,7 +171,7 @@ export default function Home() {
       <section className="home-section home-services reveal" id="services" aria-labelledby="services-title">
         <div className="container">
           <div className="home-services__header section-header section-header--center">
-            <p className="home-services__label">Services</p>
+            <p className="section-label">Services</p>
             <h2 id="services-title" className="home-subtitle home-services__heading">
               Services We Provide
             </h2>
@@ -279,7 +279,7 @@ export default function Home() {
       <section className="home-section home-faq reveal" id="faq" aria-labelledby="faq-title">
         <div className="container">
           <div className="section-header section-header--center home-faq__header">
-            <p className="section-label section-label--light">FAQ</p>
+            <p className="section-label section-label--light">Our Faqs</p>
             <h2 id="faq-title" className="home-subtitle home-subtitle--light">
               Frequently Asked Questions
             </h2>

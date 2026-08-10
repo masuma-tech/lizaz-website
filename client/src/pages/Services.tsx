@@ -45,7 +45,7 @@ export default function Services() {
       <header className="page-hero page-hero--split" aria-labelledby="services-page-title">
         <div className="container page-hero--split__grid">
           <div className="page-hero--split__main">
-            <p className="page-hero--split__label">Our Services</p>
+            <p className="section-label">Our Services</p>
             <h1 id="services-page-title" className="page__title">
               <span className="page-hero--split__title-line">Document Clearance &amp; Visa Processing</span>
               <span className="page-hero--split__title-accent">Business Setup Services in the UAE</span>

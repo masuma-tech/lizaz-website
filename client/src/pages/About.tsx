@@ -12,7 +12,7 @@ export default function About() {
       <header className="page-hero page-hero--split" aria-labelledby="about-page-title">
         <div className="container page-hero--split__grid">
           <div className="page-hero--split__main">
-            <p className="page-hero--split__label">About Us</p>
+            <p className="section-label">About Us</p>
             <h1 id="about-page-title" className="page__title">
               <span className="page-hero--split__title-line">Your Trusted UAE Partner for</span>
               <span className="page-hero--split__title-accent">Document Clearance &amp; Visa Services</span>

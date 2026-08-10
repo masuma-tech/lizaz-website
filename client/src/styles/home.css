@@ -149,25 +149,6 @@
   transform: translateX(-14rem);
 }
 
-.home-hero__brand {
-  font-family: var(--font-accent);
-  font-size: var(--fs-label);
-  line-height: 1.15;
-  color: var(--gold-light);
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.02em;
-}
-
-.home-hero__brand::after {
-  content: '';
-  display: block;
-  width: 64px;
-  height: 4px;
-  margin-top: 0.75rem;
-  background: var(--gold-gradient);
-  border-radius: 999px;
-  box-shadow: 0 0 18px rgba(184, 149, 90, 0.45);
-}
 
 .home-hero__title {
   display: flex;
@@ -392,9 +373,6 @@
   align-self: stretch;
 }
 
-.home-about__content .section-label {
-  font-size: var(--fs-label);
-}
 
 .home-subtitle {
   font-family: var(--font-heading);
@@ -517,13 +495,7 @@
   color: #ffffff;
 }
 
-.home-services__label {
-  font-family: var(--font-accent);
-  font-size: var(--fs-label);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
-  color: var(--gold-light);
+.home-services__header .section-label {
   margin-bottom: 0.5rem;
 }
 
@@ -689,9 +661,6 @@
   background-size: 80px 80px;
 }
 
-.home-process__header .section-label {
-  font-size: var(--fs-label);
-}
 
 .home-process__header .section-lead {
   font-size: var(--fs-lead);
@@ -833,10 +802,6 @@
   color: #ffffff;
 }
 
-.home-faq__header .section-label {
-  font-family: var(--font-accent);
-  font-size: var(--fs-label);
-}
 
 .home-faq__header .home-subtitle::after {
   content: '';
@@ -978,10 +943,6 @@
     var(--surface-muted);
 }
 
-.home-why__header .section-label {
-  font-family: var(--font-accent);
-  font-size: var(--fs-label);
-}
 
 .home-why__header .home-subtitle::after {
   content: '';
@@ -998,10 +959,6 @@
   font-size: var(--fs-lead);
 }
 
-.home-testimonials__header .section-label {
-  font-family: var(--font-accent);
-  font-size: var(--fs-label);
-}
 
 .home-testimonials__header .home-subtitle::after {
   content: '';
@@ -1018,10 +975,6 @@
   font-size: var(--fs-lead);
 }
 
-.home-blog__header .section-label {
-  font-family: var(--font-accent);
-  font-size: var(--fs-label);
-}
 
 .home-blog__header .home-subtitle::after {
   content: '';

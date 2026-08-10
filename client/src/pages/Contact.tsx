@@ -58,7 +58,7 @@ export default function Contact() {
       <header className="page-hero page-hero--split" aria-labelledby="contact-page-title">
         <div className="container page-hero--split__grid">
           <div className="page-hero--split__main">
-            <p className="page-hero--split__label">Contact Us</p>
+            <p className="section-label">Contact Us</p>
             <h1 id="contact-page-title" className="page__title">
               <span className="page-hero--split__title-line">Contact our specialist for UAE Visa,</span>
               <span className="page-hero--split__title-accent">Document Clearance &amp; Business Setup Services</span>
@@ -74,7 +74,7 @@ export default function Contact() {
       <section className="page page-contact-form reveal" aria-labelledby="form-title">
         <div className="container page-contact-form__grid">
           <div className="page-contact-form__intro">
-            <p className="section-label">Send a message</p>
+            <p className="section-label">Send a Message</p>
             <h2 id="form-title" className="section-title">
               Have a question about document clearance, visas, or business setup in the UAE?
             </h2>

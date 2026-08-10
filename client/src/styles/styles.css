@@ -26,7 +26,7 @@
   /* Unified type scale — same sizes on every page */
   --fs-hero: clamp(1.6rem, 2.6vw, 2.15rem);
   --fs-title: clamp(1.35rem, 2.1vw, 1.65rem);
-  --fs-label: clamp(1.4rem, 1.9vw, 1.7rem);
+  --fs-label: 1.75rem;
   --fs-card-title: 1.05rem;
   --fs-lead: 0.95rem;
   --fs-body: 0.9375rem;
@@ -587,15 +587,18 @@ main {
   text-align: left;
 }
 
-/* Shared components */
+/* Shared components — one cursive label style sitewide */
 .section-label {
   display: inline-block;
+  margin: 0;
   font-family: var(--font-accent);
   font-size: var(--fs-label);
   font-weight: 400;
-  color: var(--gold-dark);
+  font-style: normal;
   line-height: 1.15;
   letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--gold-dark);
 }
 
 .section-label::after {
@@ -612,7 +615,10 @@ main {
   margin-inline: auto;
 }
 
-.section-label--light {
+.section-label--light,
+.page-hero .section-label,
+.home-services .section-label,
+.home-faq .section-label {
   color: var(--gold-light);
 }
 
@@ -1010,7 +1016,7 @@ main {
   :root {
     --fs-hero: clamp(1.45rem, 5vw, 1.85rem);
     --fs-title: clamp(1.25rem, 4.2vw, 1.5rem);
-    --fs-label: clamp(1.3rem, 4vw, 1.55rem);
+    --fs-label: 1.75rem;
   }
 }
 
