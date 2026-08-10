@@ -46,14 +46,16 @@ export default function Blog() {
         <section className="page about-intro blog-featured reveal" aria-labelledby="featured-title">
           <div className="container about-intro__grid">
             <div className="about-intro__media">
-              <img
-                className="blog-featured__img"
-                src={`/${encodeAssetUrl(featured.image)}`}
-                alt="Lizaz helps you clear the entire path, from attestation to approval"
-                width={300}
-                height={400}
-                loading="lazy"
-              />
+              <figure className="about-media">
+                <img
+                  className="about-media__img blog-featured__img"
+                  src="/attached_assets/images/attestation.jpg"
+                  alt="Lizaz helps you clear the entire path, from attestation to approval"
+                  width={340}
+                  height={450}
+                  loading="lazy"
+                />
+              </figure>
             </div>
             <div className="about-intro__content">
               <p className="section-label">Featured Article</p>

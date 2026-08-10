@@ -360,6 +360,10 @@ body[data-page="home"] {
   }
 }
 
+body[data-page="about"] .about-intro {
+  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
 body[data-page="about"] .about-intro__grid {
   grid-template-columns: auto 1fr;
   align-items: stretch;
@@ -371,11 +375,11 @@ body[data-page="about"] .about-intro__content {
 }
 
 body[data-page="about"] .about-intro__media {
-  height: 100%;
-  aspect-ratio: 3 / 4;
-  width: auto;
+  width: clamp(240px, 28vw, 340px);
+  height: auto;
+  min-height: 0;
+  aspect-ratio: unset;
   align-self: stretch;
-  min-height: 340px;
 }
 
 body[data-page="about"] .about-media {
@@ -864,27 +868,32 @@ body[data-page="about"] .about-commitment {
   color: var(--text-secondary);
 }
 
-/* Blog featured article — landscape banner so baked-in titles stay visible */
+/* Blog featured article — photo matches content height */
 .blog-featured .about-intro__grid {
-  grid-template-columns: minmax(280px, 42%) 1fr;
+  grid-template-columns: auto 1fr;
   gap: clamp(2.5rem, 5vw, 4rem);
-  align-items: center;
+  align-items: stretch;
 }
 
 .blog-featured .about-intro__content {
-  padding-left: clamp(1.25rem, 3vw, 2.75rem);
+  padding-left: 0;
 }
 
 .blog-featured .about-intro__media {
-  position: relative;
-  width: 100%;
+  width: clamp(240px, 28vw, 340px);
   height: auto;
-  aspect-ratio: 16 / 9;
-  align-self: center;
   min-height: 0;
-  background: #f3f3f3;
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  aspect-ratio: unset;
+  align-self: stretch;
+  background: transparent;
+}
+
+.blog-featured .about-media {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  position: relative;
 }
 
 .blog-featured__img {
@@ -893,11 +902,10 @@ body[data-page="about"] .about-commitment {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  border-left: 4px solid var(--gold);
+  aspect-ratio: unset;
+  max-height: none;
 }
 
 @media (max-width: 1024px) {
@@ -910,11 +918,11 @@ body[data-page="about"] .about-commitment {
   }
 
   .blog-featured .about-intro__media {
-    width: min(520px, 100%);
+    width: min(260px, 66%);
     height: auto;
     min-height: 0;
     margin-inline: auto;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 4;
   }
 }
 
@@ -973,6 +981,7 @@ body[data-page="about"] .about-commitment {
 .page-blog {
   background: var(--surface-muted);
   border-block: 1px solid var(--border);
+  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
 .page-blog__meta {
@@ -985,7 +994,7 @@ body[data-page="about"] .about-commitment {
 .page-blog__toolbar {
   display: flex;
   flex-wrap: wrap;
-  align-items: end;
+  align-items: start;
   justify-content: space-between;
   gap: 1.25rem 2rem;
   margin-bottom: 2rem;
@@ -1027,6 +1036,7 @@ body[data-page="about"] .about-commitment {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: 3.25rem;
 }
 
 .page-blog__filter {
