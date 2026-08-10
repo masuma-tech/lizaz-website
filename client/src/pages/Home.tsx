@@ -136,8 +136,8 @@ export default function Home() {
                 className="about-media__img"
                 src="/attached_assets/images/embassy.jpg"
                 alt="Embassy document attestation and clearance services"
-                width={640}
-                height={280}
+                width={340}
+                height={450}
                 loading="lazy"
               />
             </figure>
