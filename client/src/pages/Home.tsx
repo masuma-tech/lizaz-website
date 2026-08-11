@@ -3,8 +3,8 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { ContactForm } from "@/components/ContactForm";
+import { fetchPublishedBlogs } from "@/lib/data";
 import { encodeAssetUrl } from "@/lib/utils";
-import type { BlogPost } from "@shared/schema";
 
 const FAQ = [
   {
@@ -44,10 +44,11 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
-  const { data } = useQuery<{ posts: BlogPost[] }>({
-    queryKey: ["/api/blogs"],
+  const { data: posts = [], isLoading: blogsLoading, isError: blogsError } = useQuery({
+    queryKey: ["blogs", "published"],
+    queryFn: fetchPublishedBlogs,
   });
-  const posts = (data?.posts || []).slice(0, 4);
+  const latestPosts = posts.slice(0, 4);
 
   useEffect(() => {
     document.title = "Lizaz | UAE Document Clearance, Visa & Business Setup";
@@ -504,13 +505,13 @@ export default function Home() {
           <div className="home-blog-slider" aria-roledescription="carousel" aria-label="Latest blog posts">
             <div className="home-blog-slider__viewport">
               <div className="home-blog-slider__track" id="home-blog-track">
-                {!data && <p className="home-blog-slider__loading">Loading latest articles...</p>}
-                {data && !posts.length && (
+                {blogsLoading && <p className="home-blog-slider__loading">Loading latest articles...</p>}
+                {(blogsError || (!blogsLoading && !latestPosts.length)) && (
                   <p className="home-blog-slider__empty">
                     Unable to load articles right now. <Link href="/blog">Visit the blog</Link>.
                   </p>
                 )}
-                {posts.map((post) => (
+                {latestPosts.map((post) => (
                   <Link key={post.id} className="blog-card" href={`/blog/${encodeURIComponent(post.slug)}`}>
                     <img
                       src={`/${encodeAssetUrl(post.image)}`}

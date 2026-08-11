@@ -2,24 +2,26 @@ import { useEffect } from "react";
 import { Link, useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
+import { fetchBlogBySlug } from "@/lib/data";
 import { encodeAssetUrl, formatBlogContent } from "@/lib/utils";
-import type { BlogPost as BlogPostType } from "@shared/schema";
 
 export default function BlogPost() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug || "";
 
-  const { data, isLoading, isError } = useQuery<{ post: BlogPostType }>({
-    queryKey: ["/api/blogs", `?slug=${encodeURIComponent(slug)}`],
+  const {
+    data: post,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["blogs", "slug", slug],
     enabled: Boolean(slug),
     queryFn: async () => {
-      const res = await fetch(`/api/blogs?slug=${encodeURIComponent(slug)}`);
-      if (!res.ok) throw new Error("Failed to load article");
-      return res.json();
+      const result = await fetchBlogBySlug(slug);
+      if (!result) throw new Error("Blog post not found");
+      return result;
     },
   });
-
-  const post = data?.post;
 
   useEffect(() => {
     document.title = post

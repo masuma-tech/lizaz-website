@@ -1,0 +1,6 @@
+# Minimal Supabase config for Edge Functions.
+# Project linking/deploy: https://supabase.com/docs/guides/functions
+
+[functions.send-contact-email]
+# Public contact form — called with the anon key from the browser.
+verify_jwt = false

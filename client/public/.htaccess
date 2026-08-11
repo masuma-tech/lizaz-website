@@ -1,0 +1,18 @@
+# Apache: serve the Vite SPA from public_html
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Do not rewrite real files or directories (assets, images, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # SPA fallback
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Block access to env / source secrets if accidentally uploaded
+<FilesMatch "^(\.env|\.env\..*|package(-lock)?\.json|tsconfig\.json|vite\.config\.ts|drizzle\.config\.ts)$">
+  Require all denied
+</FilesMatch>

@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
-import { apiRequest } from "@/lib/queryClient";
+import { submitContact } from "@/lib/data";
 
 const SERVICES = [
   "Business Formation & Trade Licensing",
@@ -40,7 +40,7 @@ export default function Contact() {
 
     setSubmitting(true);
     try {
-      await apiRequest("POST", "/api/contact", payload);
+      await submitContact(payload);
       setStatus({ type: "success", message: "Thank you. Your inquiry was submitted successfully." });
       form.reset();
     } catch {

@@ -2,15 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
+import { fetchPublishedBlogs } from "@/lib/data";
 import { encodeAssetUrl } from "@/lib/utils";
-import type { BlogPost } from "@shared/schema";
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const { data, isLoading, isError } = useQuery<{ posts: BlogPost[] }>({
-    queryKey: ["/api/blogs"],
+  const { data: posts = [], isLoading, isError } = useQuery({
+    queryKey: ["blogs", "published"],
+    queryFn: fetchPublishedBlogs,
   });
-  const posts = data?.posts || [];
 
   useEffect(() => {
     document.title = "Blog | UAE Visa, Golden Visa & Business Setup Guides — Lizaz";

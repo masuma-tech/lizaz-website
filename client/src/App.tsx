@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
@@ -13,22 +12,18 @@ import NotFound from "@/pages/NotFound";
 import Admin from "@/pages/Admin";
 
 /** Must match server/adminPath.ts default when ADMIN_PATH is unset. */
-const DEFAULT_ADMIN_PATH = "/lizaz-admin-portal-9k2m7xq";
-const DEFAULT_ADMIN_API = "/api/lizaz-admin-portal-9k2m7xq";
+const ADMIN_PATH = import.meta.env.VITE_ADMIN_PATH || "/lizaz-admin-portal-9k2m7xq";
+const ADMIN_API = import.meta.env.VITE_ADMIN_API_BASE || "/api/lizaz-admin-portal-9k2m7xq";
 
-type SiteConfig = {
-  adminPath: string;
-  adminApiBase: string;
-};
-
-function Router({ config }: { config: SiteConfig }) {
+function Router() {
   const [location] = useLocation();
 
-  if (location === config.adminPath || location.startsWith(`${config.adminPath}/`)) {
-    return <Admin apiBase={config.adminApiBase} />;
+  // Admin CMS still uses the Node API when available (auth + Resend stay server-side).
+  if (location === ADMIN_PATH || location.startsWith(`${ADMIN_PATH}/`)) {
+    return <Admin apiBase={ADMIN_API} />;
   }
 
-  // Same pattern as RealEstate — public pages work with no Node/API
+  // Public pages fetch blogs/contacts via Supabase — no Node server required.
   return (
     <Switch>
       <Route path="/about" component={About} />
@@ -43,36 +38,10 @@ function Router({ config }: { config: SiteConfig }) {
 }
 
 export default function App() {
-  const [config, setConfig] = useState<SiteConfig>({
-    adminPath: DEFAULT_ADMIN_PATH,
-    adminApiBase: DEFAULT_ADMIN_API,
-  });
-
-  useEffect(() => {
-    // Optional: override from Node when available (Apache static hosting ignores this)
-    fetch("/api/config")
-      .then(async (res) => {
-        const type = res.headers.get("content-type") || "";
-        if (!res.ok || !type.includes("application/json")) return null;
-        return res.json();
-      })
-      .then((data) => {
-        if (data?.adminPath && data?.adminApiBase) {
-          setConfig({
-            adminPath: data.adminPath,
-            adminApiBase: data.adminApiBase,
-          });
-        }
-      })
-      .catch(() => {
-        /* keep defaults — pages still work without Node */
-      });
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <ScrollToTop />
-      <Router config={config} />
+      <Router />
     </QueryClientProvider>
   );
 }
