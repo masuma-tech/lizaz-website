@@ -81,6 +81,7 @@ export default function Home() {
         <div className="home-hero__bg" aria-hidden="true"></div>
         <div className="container home-hero__grid">
           <div className="home-hero__content">
+            <p className="home-hero__company">Lizaz Document Clearing Services LLC</p>
             <h1 id="hero-title" className="home-hero__title">
               <span className="home-hero__title-line">Your Trusted Partner for</span>
               <span className="home-hero__title-accent">Document Clearance &amp; Visa Services</span>
@@ -512,20 +513,22 @@ export default function Home() {
                   </p>
                 )}
                 {latestPosts.map((post) => (
-                  <Link key={post.id} className="blog-card" href={`/blog/${encodeURIComponent(post.slug)}`}>
-                    <img
-                      src={`/${encodeAssetUrl(post.image)}`}
-                      alt={post.title}
-                      width={400}
-                      height={240}
-                      loading="lazy"
-                    />
-                    <div className="blog-card__body">
-                      <span className="blog-card__tag">{post.category}</span>
-                      <h3 className="blog-card__title">{post.title}</h3>
-                      <p>{post.excerpt}</p>
-                    </div>
-                  </Link>
+                  <div key={post.id} className="home-blog-slider__slide">
+                    <Link className="blog-card" href={`/blog/${encodeURIComponent(post.slug)}`}>
+                      <img
+                        src={`/${encodeAssetUrl(post.image)}`}
+                        alt={post.title}
+                        width={400}
+                        height={250}
+                        loading="lazy"
+                      />
+                      <div className="blog-card__body">
+                        <span className="blog-card__tag">{post.category}</span>
+                        <h3 className="blog-card__title">{post.title}</h3>
+                        <p>{post.excerpt}</p>
+                      </div>
+                    </Link>
+                  </div>
                 ))}
               </div>
             </div>
