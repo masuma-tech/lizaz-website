@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
+import { CountUp } from "@/components/CountUp";
 import { SiteLayout } from "@/components/SiteLayout";
 
 export default function About() {
@@ -19,7 +20,7 @@ export default function About() {
             </h1>
           </div>
           <aside className="page-hero--split__aside" aria-label="Experience highlight">
-            <span className="page-hero--split__stat">8+</span>
+            <CountUp className="page-hero--split__stat" value="8+" />
             <span className="page-hero--split__stat-label">Years of Trust</span>
           </aside>
         </div>
@@ -68,7 +69,7 @@ export default function About() {
             ["24h", "Average Response Time"],
           ].map(([value, label]) => (
             <div className="about-stat" key={label}>
-              <span className="about-stat__value">{value}</span>
+              <CountUp className="about-stat__value" value={value} />
               <span className="about-stat__label">{label}</span>
             </div>
           ))}

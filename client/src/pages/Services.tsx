@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
+import { CountUp } from "@/components/CountUp";
 import { SiteLayout } from "@/components/SiteLayout";
 
 const SERVICES = [
@@ -52,7 +53,7 @@ export default function Services() {
             </h1>
           </div>
           <aside className="page-hero--split__aside" aria-label="Services highlight">
-            <span className="page-hero--split__stat">5</span>
+            <CountUp className="page-hero--split__stat" value="5" />
             <span className="page-hero--split__stat-label">Core Services</span>
           </aside>
         </div>
@@ -102,7 +103,7 @@ export default function Services() {
             ["100%", "Compliance Focused"],
           ].map(([value, label]) => (
             <div className="about-stat" key={label}>
-              <span className="about-stat__value">{value}</span>
+              <CountUp className="about-stat__value" value={value} />
               <span className="about-stat__label">{label}</span>
             </div>
           ))}

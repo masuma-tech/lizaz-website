@@ -33,13 +33,18 @@ export function useScrollReveal(deps: unknown[] = []) {
       addReveal(section.querySelector(".about-commitment__content"), "reveal-left");
       addReveal(section.querySelector(".about-commitment__media"), "reveal-right");
       addReveal(section.querySelector(".about-cta__inner"), "reveal-pop");
-      addStaggerReveal(section.querySelectorAll(".service-card"), 0.06);
-      addStaggerReveal(section.querySelectorAll(".page-service-card"), 0.06);
-      addStaggerReveal(section.querySelectorAll(".why-card"), 0.05);
-      addStaggerReveal(section.querySelectorAll(".process-card"), 0.06);
-      addStaggerReveal(section.querySelectorAll(".faq-accordion__item"), 0.04, "reveal-up");
-      addStaggerReveal(section.querySelectorAll(".about-stat"), 0.06);
-      addStaggerReveal(section.querySelectorAll(".about-value-card"), 0.06);
+      addStaggerReveal(section.querySelectorAll(".service-card"), 0.08);
+      addStaggerReveal(section.querySelectorAll(".page-service-card"), 0.08);
+      addStaggerReveal(section.querySelectorAll(".why-card"), 0.07);
+      addStaggerReveal(section.querySelectorAll(".process-card"), 0.08);
+      addStaggerReveal(section.querySelectorAll(".faq-accordion__item"), 0.06, "reveal-up");
+      addStaggerReveal(section.querySelectorAll(".about-stat"), 0.08);
+      addStaggerReveal(section.querySelectorAll(".about-value-card"), 0.07);
+      addStaggerReveal(section.querySelectorAll(".page-blog-card"), 0.07);
+      addStaggerReveal(section.querySelectorAll(".blog-card"), 0.07);
+      addReveal(section.querySelector(".page-hero--split__main"), "reveal-up");
+      addReveal(section.querySelector(".page-hero--split__aside"), "reveal-pop", "0.1s");
+      addReveal(section.querySelector(".home-blog-slider"), "reveal-up");
       addReveal(section.querySelector(".faq-cta"), "reveal-pop", "0.25s");
       addReveal(section.querySelector(".process-timeline__line"), "reveal-fade", "0.15s");
     });
@@ -57,7 +62,7 @@ export function useScrollReveal(deps: unknown[] = []) {
           revealObserver.unobserve(entry.target);
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -32px 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -48px 0px" },
     );
 
     document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));

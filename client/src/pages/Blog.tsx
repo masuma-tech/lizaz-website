@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { CountUp } from "@/components/CountUp";
 import { SiteLayout } from "@/components/SiteLayout";
 import { fetchPublishedBlogs } from "@/lib/data";
 import { encodeAssetUrl } from "@/lib/utils";
@@ -36,7 +37,7 @@ export default function Blog() {
             </h1>
           </div>
           <aside className="page-hero--split__aside" aria-label="Blog highlight">
-            <span className="page-hero--split__stat">50+</span>
+            <CountUp className="page-hero--split__stat" value="50+" />
             <span className="page-hero--split__stat-label">Articles</span>
           </aside>
         </div>

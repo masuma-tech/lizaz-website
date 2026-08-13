@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "wouter";
+import { CountUp } from "@/components/CountUp";
 import { SiteLayout } from "@/components/SiteLayout";
 import { submitContact } from "@/lib/data";
 
@@ -65,7 +66,7 @@ export default function Contact() {
             </h1>
           </div>
           <aside className="page-hero--split__aside" aria-label="Response time highlight">
-            <span className="page-hero--split__stat">24h</span>
+            <CountUp className="page-hero--split__stat" value="24h" />
             <span className="page-hero--split__stat-label">Response Time</span>
           </aside>
         </div>
