@@ -186,12 +186,13 @@ export default function Services() {
               Book Free Consultation
             </Link>
           </div>
-          <div className="about-commitment__media">
+          <div className="about-commitment__media services-process__media">
             <img
-              src="/attached_assets/images/attestation.jpg"
-              alt="Document attestation process"
-              width={600}
-              height={500}
+              className="services-process__img"
+              src="/attached_assets/images/visa_stamp.jpg"
+              alt="Visa and document clearance process"
+              width={480}
+              height={360}
               loading="lazy"
             />
           </div>
