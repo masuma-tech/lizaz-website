@@ -144,12 +144,12 @@
 .home-hero__company {
   margin: 0 0 0.75rem;
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: rgba(232, 212, 168, 0.72);
 }
 
 .home-hero__media {
