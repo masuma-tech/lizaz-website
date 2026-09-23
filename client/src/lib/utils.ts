@@ -46,6 +46,7 @@ function looksLikeSectionHeading(text: string) {
   const value = text.trim();
   if (!value || BULLET_RE.test(value) || NUMBERED_RE.test(value)) return false;
   if (value.length > 90) return false;
+  if (/https?:\/\//i.test(value)) return false;
   if (value.endsWith("?")) return true;
   // Intro lines like "…include the following:" are not section titles.
   if (/[.!,;:]$/.test(value)) return false;
@@ -216,7 +217,10 @@ function classifyBlocks(rawBlocks: string[]): BlogBlock[] {
 }
 
 function renderInline(text: string) {
-  return escapeHtml(text);
+  return escapeHtml(text).replace(
+    /https?:\/\/[^\s<]+/g,
+    (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`,
+  );
 }
 
 export function formatBlogContent(content: string | null | undefined) {
