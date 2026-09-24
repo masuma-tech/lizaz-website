@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, Fragment, useEffect, useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { BLOG_CATEGORIES } from "@shared/blogCategories";
 import type { BlogPost, Contact } from "@shared/schema";
@@ -61,6 +61,7 @@ export default function Admin({ apiBase }: Props) {
   const [loginError, setLoginError] = useState("");
   const [formError, setFormError] = useState("");
   const [saving, setSaving] = useState(false);
+  const [openInquiryIds, setOpenInquiryIds] = useState<Set<string>>(new Set());
   const [form, setForm] = useState({
     title: "",
     slug: "",
@@ -635,7 +636,7 @@ export default function Admin({ apiBase }: Props) {
           )}
 
           {view === "inquiries" && (
-            <section className="admin-page">
+            <section className="admin-page" id="inquiries-view">
               <div className="admin-page__header">
                 <div>
                   <h1>Inquiries</h1>
@@ -665,12 +666,13 @@ export default function Admin({ apiBase }: Props) {
                       <th>Service</th>
                       <th>Message</th>
                       <th>Date</th>
+                      <th className="admin-inquiry__aside" aria-label="Details" />
                     </tr>
                   </thead>
                   <tbody>
                     {!contacts.length && (
                       <tr>
-                        <td colSpan={6} className="admin-empty">
+                        <td colSpan={7} className="admin-empty">
                           No inquiries yet.
                         </td>
                       </tr>
@@ -681,20 +683,80 @@ export default function Admin({ apiBase }: Props) {
                         ? new Date(contact.createdAt).toLocaleString()
                         : "—";
                       const message = String(contact.message || "");
+                      const open = openInquiryIds.has(contact.id);
+                      const panelId = `inquiry-message-${contact.id}`;
                       return (
-                        <tr key={contact.id}>
-                          <td>{name}</td>
-                          <td>
-                            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-                          </td>
-                          <td>{contact.phone || "—"}</td>
-                          <td>{contact.service || "—"}</td>
-                          <td title={message}>
-                            {message.slice(0, 90)}
-                            {message.length > 90 ? "…" : ""}
-                          </td>
-                          <td>{created}</td>
-                        </tr>
+                        <Fragment key={contact.id}>
+                          <tr>
+                            <td>{name || "—"}</td>
+                            <td className="admin-inquiry__clip" title={contact.email}>
+                              <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                            </td>
+                            <td className="admin-inquiry__clip" title={contact.phone || undefined}>
+                              {contact.phone || "—"}
+                            </td>
+                            <td className="admin-inquiry__clip">{contact.service || "—"}</td>
+                            <td className="admin-inquiry__clip" title={message}>
+                              {message.slice(0, 90)}
+                              {message.length > 90 ? "…" : ""}
+                            </td>
+                            <td>{created}</td>
+                            <td className="admin-inquiry__aside">
+                              <button
+                                type="button"
+                                className={`admin-inquiry__toggle${open ? " is-open" : ""}`}
+                                aria-expanded={open}
+                                aria-controls={panelId}
+                                aria-label={open ? "Hide inquiry details" : "Show inquiry details"}
+                                onClick={() =>
+                                  setOpenInquiryIds((current) => {
+                                    const next = new Set(current);
+                                    if (next.has(contact.id)) next.delete(contact.id);
+                                    else next.add(contact.id);
+                                    return next;
+                                  })
+                                }
+                              >
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                                  <path
+                                    d="M6 9.5 12 15.5 18 9.5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </button>
+                            </td>
+                          </tr>
+                          {open && (
+                            <tr className="admin-inquiry__expand">
+                              <td colSpan={7}>
+                                <dl className="admin-inquiry__details" id={panelId}>
+                                  <div>
+                                    <dt>Email</dt>
+                                    <dd>
+                                      <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                                    </dd>
+                                  </div>
+                                  <div>
+                                    <dt>Phone</dt>
+                                    <dd>{contact.phone || "—"}</dd>
+                                  </div>
+                                  <div>
+                                    <dt>Service</dt>
+                                    <dd>{contact.service || "—"}</dd>
+                                  </div>
+                                  <div className="admin-inquiry__details-message">
+                                    <dt>Message</dt>
+                                    <dd>{message || "No message"}</dd>
+                                  </div>
+                                </dl>
+                              </td>
+                            </tr>
+                          )}
+                        </Fragment>
                       );
                     })}
                   </tbody>
