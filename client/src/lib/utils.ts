@@ -5,6 +5,13 @@ export function encodeAssetUrl(value: string | null | undefined) {
     .join("/");
 }
 
+export function blogImageSrc(image: string | null | undefined) {
+  const value = String(image ?? "").trim();
+  if (!value) return "";
+  if (/^https?:\/\//i.test(value)) return value;
+  return `/${encodeAssetUrl(value.replace(/^\/+/, ""))}`;
+}
+
 export function slugify(value: string) {
   return String(value || "")
     .toLowerCase()

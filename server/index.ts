@@ -94,10 +94,7 @@ app.use((req, res, next) => {
   const port = parseInt(process.env.PORT || "3000", 10);
   server.listen(port, "0.0.0.0", () => {
     log(`serving on port ${port}`);
-    log(`CMS panel (keep private): http://localhost:${port}${ADMIN_PATHNAME}`);
-    if (!process.env.ADMIN_PATH) {
-      log("Tip: set ADMIN_PATH in .env to customize the secret URL");
-    }
+    log(`CMS panel: http://localhost:${port}${ADMIN_PATHNAME}`);
     if (SITE_PROTECTED) {
       log(`Protected — login with username: ${SITE_USER}`);
     }

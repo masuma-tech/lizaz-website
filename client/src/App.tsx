@@ -11,9 +11,9 @@ import BlogPost from "@/pages/BlogPost";
 import NotFound from "@/pages/NotFound";
 import Admin from "@/pages/Admin";
 
-/** Must match server/adminPath.ts default when ADMIN_PATH is unset. */
-const ADMIN_PATH = import.meta.env.VITE_ADMIN_PATH || "/lizaz-admin-portal-9k2m7xq";
-const ADMIN_API = import.meta.env.VITE_ADMIN_API_BASE || "/api/lizaz-admin-portal-9k2m7xq";
+/** Must match server/adminPath.ts. Fixed so a production env cannot keep the old secret URL. */
+const ADMIN_PATH = "/admin/login";
+const ADMIN_API = "/api/admin/login";
 
 function Router() {
   const [location] = useLocation();

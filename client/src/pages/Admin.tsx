@@ -1,8 +1,9 @@
 import { FormEvent, Fragment, useEffect, useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { BLOG_CATEGORIES } from "@shared/blogCategories";
+import { blogDateToInput, formatBlogDate } from "@shared/blogDate";
 import type { BlogPost, Contact } from "@shared/schema";
-import { encodeAssetUrl, slugify } from "@/lib/utils";
+import { blogImageSrc, slugify } from "@/lib/utils";
 import "@/styles/admin.css";
 
 type PublicUser = {
@@ -18,14 +19,13 @@ type Props = {
   apiBase: string;
 };
 
-async function cmsFetch(url: string, options: RequestInit = {}) {
+async function cmsFetch(url: string, options: RequestInit = {}, json = true) {
   const response = await fetch(url, {
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-    },
     ...options,
+    headers: json
+      ? { "Content-Type": "application/json", ...(options.headers || {}) }
+      : options.headers,
   });
   const text = await response.text();
   let data: any = null;
@@ -40,6 +40,14 @@ async function cmsFetch(url: string, options: RequestInit = {}) {
     throw new Error(data?.error || "Request failed");
   }
   return data;
+}
+
+async function uploadBlogImage(apiBase: string, file: File, slug: string) {
+  const body = new FormData();
+  body.append("image", file);
+  body.append("slug", slug);
+  const data = await cmsFetch(`${apiBase}/uploads`, { method: "POST", body }, false);
+  return String(data.image || "");
 }
 
 export default function Admin({ apiBase }: Props) {
@@ -61,6 +69,8 @@ export default function Admin({ apiBase }: Props) {
   const [loginError, setLoginError] = useState("");
   const [formError, setFormError] = useState("");
   const [saving, setSaving] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState("");
   const [openInquiryIds, setOpenInquiryIds] = useState<Set<string>>(new Set());
   const [form, setForm] = useState({
     title: "",
@@ -137,7 +147,7 @@ export default function Admin({ apiBase }: Props) {
       published: posts.filter((p) => p.published).length,
       categories: new Set(posts.map((p) => p.category)).size,
       month: posts.filter((p) => {
-        const date = new Date(p.date);
+        const date = new Date(blogDateToInput(p.date) || p.date);
         return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
       }).length,
     };
@@ -183,6 +193,8 @@ export default function Admin({ apiBase }: Props) {
     setEditingPost(null);
     setSlugTouched(false);
     setFormError("");
+    setImageFile(null);
+    setImagePreview("");
     setForm({
       title: "",
       slug: "",
@@ -201,12 +213,14 @@ export default function Admin({ apiBase }: Props) {
     setEditingPost(post);
     setSlugTouched(true);
     setFormError("");
+    setImageFile(null);
+    setImagePreview(blogImageSrc(post.image));
     setForm({
       title: post.title || "",
       slug: post.slug || "",
       category: post.category || BLOG_CATEGORIES[0],
       author: post.author || "Lizaz Team",
-      date: (post.date || "").slice(0, 10),
+      date: blogDateToInput(post.date) || new Date().toISOString().slice(0, 10),
       image: post.image || "",
       excerpt: post.excerpt || "",
       content: post.content || "",
@@ -218,13 +232,28 @@ export default function Admin({ apiBase }: Props) {
   async function saveBlog(e: FormEvent) {
     e.preventDefault();
     setFormError("");
+    if (!imageFile && !form.image.trim()) {
+      setFormError("Choose a cover image for this article.");
+      return;
+    }
     setSaving(true);
+    const slug = form.slug.trim() || slugify(form.title);
+    let image = form.image.trim();
+    try {
+      if (imageFile) {
+        image = await uploadBlogImage(apiBase, imageFile, slug);
+      }
+    } catch (error: any) {
+      setFormError(error.message || "Could not upload the cover image");
+      setSaving(false);
+      return;
+    }
     const payload = {
       ...form,
       title: form.title.trim(),
-      slug: form.slug.trim() || slugify(form.title),
+      slug,
       author: form.author.trim() || "Lizaz Team",
-      image: form.image.trim(),
+      image,
       excerpt: form.excerpt.trim(),
       content: form.content.trim(),
     };
@@ -560,9 +589,7 @@ export default function Admin({ apiBase }: Props) {
                       </tr>
                     )}
                     {filteredPosts.map((post) => {
-                      const imageSrc = post.image?.startsWith("http")
-                        ? post.image
-                        : `/${encodeAssetUrl(post.image)}`;
+                      const imageSrc = blogImageSrc(post.image);
                       return (
                         <tr key={post.id}>
                           <td className="admin-table__check">
@@ -590,7 +617,7 @@ export default function Admin({ apiBase }: Props) {
                             <span className="admin-badge">{post.category}</span>
                           </td>
                           <td>{post.author}</td>
-                          <td>{post.date}</td>
+                          <td>{formatBlogDate(post.date)}</td>
                           <td>
                             <span
                               className={`admin-badge ${
@@ -845,14 +872,24 @@ export default function Admin({ apiBase }: Props) {
                   />
                 </div>
                 <div className="admin-field admin-field--full">
-                  <label htmlFor="blog-image">Image path or URL *</label>
+                  <label htmlFor="blog-image">Cover image{editingPost ? "" : " *"}</label>
                   <input
                     id="blog-image"
-                    required
-                    placeholder="Blog/Article Name/banner.jpg"
-                    value={form.image}
-                    onChange={(e) => setForm((prev) => ({ ...prev, image: e.target.value }))}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setImageFile(file);
+                      setImagePreview((current) => {
+                        if (current.startsWith("blob:")) URL.revokeObjectURL(current);
+                        return file ? URL.createObjectURL(file) : blogImageSrc(form.image);
+                      });
+                    }}
                   />
+                  <p className="admin-field__hint">
+                    JPG, PNG, WEBP, or GIF. The image is saved with the article and shown on the blog.
+                  </p>
+                  {imagePreview && <img className="admin-image-preview" src={imagePreview} alt="" />}
                 </div>
                 <div className="admin-field admin-field--full">
                   <label htmlFor="blog-excerpt">Excerpt *</label>
@@ -867,6 +904,9 @@ export default function Admin({ apiBase }: Props) {
                 </div>
                 <div className="admin-field admin-field--full">
                   <label htmlFor="blog-content">Content *</label>
+                  <p className="admin-field__hint">
+                    Write the article as normal text. A blank line starts a new paragraph, and a short line on its own becomes a heading.
+                  </p>
                   <textarea
                     id="blog-content"
                     rows={12}

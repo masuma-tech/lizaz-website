@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { CountUp } from "@/components/CountUp";
 import { SiteLayout } from "@/components/SiteLayout";
 import { fetchPublishedBlogs } from "@/lib/data";
-import { encodeAssetUrl } from "@/lib/utils";
+import { formatBlogDate } from "@shared/blogDate";
+import { blogImageSrc } from "@/lib/utils";
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -115,7 +116,7 @@ export default function Blog() {
             {filtered.map((post) => (
               <Link key={post.id} className="page-blog-card" href={`/blog/${encodeURIComponent(post.slug)}`}>
                 <img
-                  src={`/${encodeAssetUrl(post.image)}`}
+                  src={blogImageSrc(post.image)}
                   alt={post.title}
                   width={400}
                   height={260}
@@ -126,7 +127,7 @@ export default function Blog() {
                   <h3 className="page-blog-card__title">{post.title}</h3>
                   <p>{post.excerpt}</p>
                   <div className="page-blog-card__meta">
-                    <time>{post.date}</time>
+                    <time>{formatBlogDate(post.date)}</time>
                     <span className="page-blog-card__more">Read more</span>
                   </div>
                 </div>

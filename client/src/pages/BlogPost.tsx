@@ -3,7 +3,8 @@ import { Link, useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { fetchBlogBySlug } from "@/lib/data";
-import { encodeAssetUrl, formatBlogContent } from "@/lib/utils";
+import { formatBlogDate } from "@shared/blogDate";
+import { blogImageSrc, formatBlogContent } from "@/lib/utils";
 
 export default function BlogPost() {
   const params = useParams<{ slug: string }>();
@@ -56,12 +57,12 @@ export default function BlogPost() {
                 <h1 className="page-blog-article__title">{post.title}</h1>
                 <div className="page-blog-article__meta">
                   <span>{post.author || "Lizaz Team"}</span>
-                  <time dateTime={post.date}>{post.date}</time>
+                  <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
                 </div>
               </header>
               <img
                 className="page-blog-article__image"
-                src={`/${encodeAssetUrl(post.image)}`}
+                src={blogImageSrc(post.image)}
                 alt={post.title}
                 width={1200}
                 height={630}

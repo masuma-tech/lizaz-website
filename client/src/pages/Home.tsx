@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/SiteLayout";
 import { ContactForm } from "@/components/ContactForm";
 import { fetchPublishedBlogs } from "@/lib/data";
-import { encodeAssetUrl } from "@/lib/utils";
+import { blogImageSrc } from "@/lib/utils";
 
 const FAQ = [
   {
@@ -516,7 +516,7 @@ export default function Home() {
                   <div key={post.id} className="home-blog-slider__slide">
                     <Link className="blog-card" href={`/blog/${encodeURIComponent(post.slug)}`}>
                       <img
-                        src={`/${encodeAssetUrl(post.image)}`}
+                        src={blogImageSrc(post.image)}
                         alt={post.title}
                         width={400}
                         height={250}

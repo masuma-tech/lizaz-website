@@ -15,7 +15,10 @@ import {
   deleteBlogPost,
   listContacts,
 } from "./storage";
+import { formatBlogDate } from "@shared/blogDate";
 import { insertBlogPostSchema } from "@shared/schema";
+import multer from "multer";
+import { isAllowedBlogImage, saveBlogCover } from "./blogImage";
 import {
   authenticateUser,
   canManageBlogs,
@@ -44,6 +47,26 @@ const loginSchema = z.object({
   username: z.string().trim().min(1, "Username is required"),
   password: z.string().min(1, "Password is required"),
 });
+
+const blogImageUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 8 * 1024 * 1024 },
+});
+
+function receiveBlogImage(req: Request, res: Response, next: NextFunction) {
+  blogImageUpload.single("image")(req, res, (err: unknown) => {
+    if (!err) {
+      next();
+      return;
+    }
+    const code = typeof err === "object" && err && "code" in err ? String((err as { code: string }).code) : "";
+    if (code === "LIMIT_FILE_SIZE") {
+      res.status(400).json({ error: "Image must be 8 MB or smaller" });
+      return;
+    }
+    res.status(400).json({ error: err instanceof Error ? err.message : "Could not upload image" });
+  });
+}
 
 function slugify(value: string) {
   return String(value || "")
@@ -164,11 +187,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Block guessable admin API paths
+  // Block guessable admin API paths that are not the real CMS API.
   app.use("/api/auth", (_req, res) => {
     res.status(404).json({ error: "Not found" });
   });
-  app.use("/api/admin", (_req, res) => {
+  app.use("/api/admin", (req, res, next) => {
+    const pathOnly = req.originalUrl.split("?")[0];
+    if (pathOnly === ADMIN_API_BASE || pathOnly.startsWith(`${ADMIN_API_BASE}/`)) {
+      next();
+      return;
+    }
     res.status(404).json({ error: "Not found" });
   });
 
@@ -210,6 +238,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ authenticated: true, user });
   });
 
+  app.post(`${ADMIN_API_BASE}/uploads`, requireManageBlogs, receiveBlogImage, async (req, res) => {
+    try {
+      const file = req.file;
+      if (!file) {
+        res.status(400).json({ error: "Choose a cover image" });
+        return;
+      }
+      if (!isAllowedBlogImage(file.mimetype)) {
+        res.status(400).json({ error: "Please upload a JPG, PNG, WEBP, or GIF image" });
+        return;
+      }
+
+      const slug = slugify(String(req.body?.slug || req.body?.title || "")) || `post-${Date.now()}`;
+      const image = await saveBlogCover(slug, file);
+      res.json({ image });
+    } catch (error) {
+      console.error("Blog image upload error:", error);
+      res.status(500).json({ error: "Failed to save the cover image" });
+    }
+  });
+
   app.get(`${ADMIN_API_BASE}/blogs`, requireManageBlogs, async (_req, res) => {
     try {
       const posts = await listAllBlogPosts();
@@ -227,7 +276,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ...body,
         slug: body.slug?.trim() || slugify(body.title),
         author: body.author?.trim() || "Lizaz Team",
-        date: body.date?.trim() || new Date().toISOString().slice(0, 10),
+        date: formatBlogDate(body.date?.trim() || new Date().toISOString().slice(0, 10)),
         published: body.published ?? true,
       });
 
@@ -271,6 +320,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (validated.slug || validated.title) {
         const nextSlug = slugify(validated.slug || validated.title || existing.slug);
         validated.slug = await ensureUniqueSlug(nextSlug, req.params.id);
+      }
+
+      if (validated.date) {
+        validated.date = formatBlogDate(validated.date);
       }
 
       const post = await updateBlogPost(req.params.id, validated);
