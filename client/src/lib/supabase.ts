@@ -13,7 +13,13 @@ if (!isSupabaseConfigured) {
 
 // Never call createClient with empty strings — that throws and blanks the whole site.
 export const supabase: SupabaseClient = isSupabaseConfigured
-  ? createClient(supabaseUrl, supabaseAnonKey)
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      },
+    })
   : (null as unknown as SupabaseClient);
 
 export function requireSupabase(): SupabaseClient {

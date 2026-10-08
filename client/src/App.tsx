@@ -11,19 +11,16 @@ import BlogPost from "@/pages/BlogPost";
 import NotFound from "@/pages/NotFound";
 import Admin from "@/pages/Admin";
 
-/** Must match server/adminPath.ts. Fixed so a production env cannot keep the old secret URL. */
 const ADMIN_PATH = "/admin/login";
-const ADMIN_API = "/api/admin/login";
 
 function Router() {
   const [location] = useLocation();
 
-  // Admin CMS still uses the Node API when available (auth + Resend stay server-side).
   if (location === ADMIN_PATH || location.startsWith(`${ADMIN_PATH}/`)) {
-    return <Admin apiBase={ADMIN_API} />;
+    return <Admin />;
   }
 
-  // Public pages fetch blogs/contacts via Supabase — no Node server required.
+  // Public pages still read blogs and send contact email through Supabase.
   return (
     <Switch>
       <Route path="/about" component={About} />

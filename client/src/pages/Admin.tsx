@@ -1,57 +1,24 @@
 import { FormEvent, Fragment, useEffect, useMemo, useState } from "react";
-import { useLocation } from "wouter";
 import { BLOG_CATEGORIES } from "@shared/blogCategories";
 import { blogDateToInput, formatBlogDate } from "@shared/blogDate";
 import type { BlogPost, Contact } from "@shared/schema";
+import {
+  currentCmsUser,
+  deleteCmsBlog,
+  fetchCmsBlogs,
+  fetchCmsContacts,
+  loginCms,
+  logoutCms,
+  saveCmsBlog,
+  uploadCmsBlogImage,
+  type CmsUser,
+} from "@/lib/cms";
 import { blogImageSrc, slugify } from "@/lib/utils";
 import "@/styles/admin.css";
 
-type PublicUser = {
-  id: string;
-  username: string;
-  name: string | null;
-  isAdmin: boolean;
-  canManageBlogs: boolean;
-  canViewLeads: boolean;
-};
+type PublicUser = CmsUser;
 
-type Props = {
-  apiBase: string;
-};
-
-async function cmsFetch(url: string, options: RequestInit = {}, json = true) {
-  const response = await fetch(url, {
-    credentials: "include",
-    ...options,
-    headers: json
-      ? { "Content-Type": "application/json", ...(options.headers || {}) }
-      : options.headers,
-  });
-  const text = await response.text();
-  let data: any = null;
-  if (text) {
-    try {
-      data = JSON.parse(text);
-    } catch {
-      data = { error: text };
-    }
-  }
-  if (!response.ok) {
-    throw new Error(data?.error || "Request failed");
-  }
-  return data;
-}
-
-async function uploadBlogImage(apiBase: string, file: File, slug: string) {
-  const body = new FormData();
-  body.append("image", file);
-  body.append("slug", slug);
-  const data = await cmsFetch(`${apiBase}/uploads`, { method: "POST", body }, false);
-  return String(data.image || "");
-}
-
-export default function Admin({ apiBase }: Props) {
-  const [, setLocation] = useLocation();
+export default function Admin() {
   const [user, setUser] = useState<PublicUser | null>(null);
   const [booting, setBooting] = useState(true);
   const [view, setView] = useState<"blogs" | "inquiries">("blogs");
@@ -90,15 +57,13 @@ export default function Admin({ apiBase }: Props) {
   }
 
   async function loadBlogs() {
-    const data = await cmsFetch(`${apiBase}/blogs`);
-    setPosts(data.posts || []);
+    setPosts(await fetchCmsBlogs());
     setSelectedIds(new Set());
   }
 
   async function loadInquiries() {
     if (!(user?.isAdmin || user?.canViewLeads)) return;
-    const data = await cmsFetch(`${apiBase}/contacts`);
-    setContacts(data.contacts || []);
+    setContacts(await fetchCmsContacts());
   }
 
   useEffect(() => {
@@ -108,19 +73,21 @@ export default function Admin({ apiBase }: Props) {
   }, []);
 
   useEffect(() => {
-    if (!apiBase) {
-      setLocation("/page-not-found");
-      return;
-    }
-    cmsFetch(`${apiBase}/auth/check`)
-      .then(async (data) => {
-        setUser(data.user);
-        await loadBlogs();
+    currentCmsUser()
+      .then(async (signedIn) => {
+        setUser(signedIn);
+        if (!signedIn) return;
+        try {
+          if (signedIn.isAdmin || signedIn.canManageBlogs) await loadBlogs();
+          if (signedIn.isAdmin || signedIn.canViewLeads) setContacts(await fetchCmsContacts());
+        } catch {
+          // The panel still opens. Refresh loads the lists again.
+        }
       })
       .catch(() => setUser(null))
       .finally(() => setBooting(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [apiBase]);
+  }, []);
 
   const filteredPosts = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -163,16 +130,18 @@ export default function Admin({ apiBase }: Props) {
     setLoginError("");
     const data = new FormData(e.currentTarget);
     try {
-      const result = await cmsFetch(`${apiBase}/auth/login`, {
-        method: "POST",
-        body: JSON.stringify({
-          username: String(data.get("username") || ""),
-          password: String(data.get("password") || ""),
-        }),
-      });
-      setUser(result.user);
-      await loadBlogs();
+      const signedIn = await loginCms(
+        String(data.get("username") || ""),
+        String(data.get("password") || ""),
+      );
+      setUser(signedIn);
       showToast("Welcome to the admin panel");
+      try {
+        if (signedIn.isAdmin || signedIn.canManageBlogs) await loadBlogs();
+        if (signedIn.isAdmin || signedIn.canViewLeads) setContacts(await fetchCmsContacts());
+      } catch (error: any) {
+        showToast(error.message || "Could not load the admin lists", "error");
+      }
     } catch (error: any) {
       setLoginError(error.message || "Invalid username or password");
     }
@@ -180,7 +149,7 @@ export default function Admin({ apiBase }: Props) {
 
   async function handleLogout() {
     try {
-      await cmsFetch(`${apiBase}/auth/logout`, { method: "POST" });
+      await logoutCms();
     } catch {
       // ignore
     }
@@ -241,7 +210,7 @@ export default function Admin({ apiBase }: Props) {
     let image = form.image.trim();
     try {
       if (imageFile) {
-        image = await uploadBlogImage(apiBase, imageFile, slug);
+        image = await uploadCmsBlogImage(imageFile, slug);
       }
     } catch (error: any) {
       setFormError(error.message || "Could not upload the cover image");
@@ -258,19 +227,8 @@ export default function Admin({ apiBase }: Props) {
       content: form.content.trim(),
     };
     try {
-      if (editingPost) {
-        await cmsFetch(`${apiBase}/blogs/${editingPost.id}`, {
-          method: "PUT",
-          body: JSON.stringify(payload),
-        });
-        showToast("Blog post updated");
-      } else {
-        await cmsFetch(`${apiBase}/blogs`, {
-          method: "POST",
-          body: JSON.stringify(payload),
-        });
-        showToast("Blog post created");
-      }
+      await saveCmsBlog(payload, editingPost?.id ?? null);
+      showToast(editingPost ? "Blog post updated" : "Blog post created");
       setDialogOpen(false);
       await loadBlogs();
     } catch (error: any) {
@@ -283,7 +241,7 @@ export default function Admin({ apiBase }: Props) {
   async function deletePost(id: string) {
     if (!confirm("Delete this blog post? This cannot be undone.")) return;
     try {
-      await cmsFetch(`${apiBase}/blogs/${id}`, { method: "DELETE" });
+      await deleteCmsBlog(id);
       showToast("Blog post deleted");
       await loadBlogs();
     } catch (error: any) {
@@ -296,7 +254,7 @@ export default function Admin({ apiBase }: Props) {
     if (!ids.length) return;
     if (!confirm(`Delete ${ids.length} selected posts? This cannot be undone.`)) return;
     try {
-      await Promise.all(ids.map((id) => cmsFetch(`${apiBase}/blogs/${id}`, { method: "DELETE" })));
+      await Promise.all(ids.map((id) => deleteCmsBlog(id)));
       showToast(`${ids.length} posts deleted`);
       await loadBlogs();
     } catch (error: any) {
