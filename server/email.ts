@@ -85,12 +85,18 @@ function buildContactEmailHtml(contact: ContactEmailPayload) {
 export async function sendContactNotificationEmail(contact: ContactEmailPayload) {
   const client = getResendClient();
   const { notificationEmail, fromEmail } = getResendConfig();
+  const recipients = [...new Set(
+    `${notificationEmail},info@lizaz.ae`
+      .split(/[,;]/)
+      .map((email) => email.trim())
+      .filter((email) => email.includes("@")),
+  )];
   const fullName = `${contact.firstName} ${contact.lastName}`.trim();
   const subject = `New Contact Inquiry — ${fullName || contact.email}`;
 
   const { error } = await client.emails.send({
     from: fromEmail,
-    to: [notificationEmail],
+    to: recipients,
     replyTo: contact.email,
     subject,
     html: buildContactEmailHtml(contact),

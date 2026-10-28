@@ -104,8 +104,14 @@ async function sendResendEmail(contact: {
   message: string;
 }) {
   const apiKey = Deno.env.get("RESEND_API_KEY");
-  const notificationEmail = Deno.env.get("RESEND_NOTIFICATION_EMAIL") ?? "Info@lizaz.ae";
+  const notificationEmail = Deno.env.get("RESEND_NOTIFICATION_EMAIL") ?? "info@lizaz.ae";
   const fromEmail = Deno.env.get("RESEND_FROM_EMAIL") ?? "Lizaz <noreply@lizaz.ae>";
+  const recipients = [...new Set(
+    `${notificationEmail},info@lizaz.ae`
+      .split(/[,;]/)
+      .map((email) => email.trim())
+      .filter((email) => email.includes("@")),
+  )];
 
   if (!apiKey) {
     throw new Error("RESEND_API_KEY is not configured");
@@ -122,7 +128,7 @@ async function sendResendEmail(contact: {
     },
     body: JSON.stringify({
       from: fromEmail,
-      to: [notificationEmail],
+      to: recipients,
       reply_to: contact.email,
       subject,
       html: buildContactEmailHtml(contact),
